@@ -6,6 +6,8 @@ type Link struct {
 	Path            string `json:"path" storm:"index"`
 	UserID          uint   `json:"userID"`
 	Expire          int64  `json:"expire"`
-	SharedCode      string `json:"shared_code,omitempty"`
+	SharedCode      string `json:"sharedCode,omitempty"`
 	SharedCodeToken string `json:"token,omitempty"`
+	AccessCount     uint   `json:"accessCount"`
+	DownloadCount   uint   `json:"downloadCount"`
 }

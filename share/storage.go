@@ -15,6 +15,8 @@ type StorageBackend interface {
 	Gets(path string, id uint) ([]*Link, error)
 	Save(s *Link) error
 	Delete(hash string) error
+	IncAccessCount(hash string) error
+	IncDownloadCount(hash string) error
 }
 
 // Storage is a storage.
@@ -114,6 +116,16 @@ func (s *Storage) Gets(path string, id uint) ([]*Link, error) {
 // Save wraps a StorageBackend.Save
 func (s *Storage) Save(l *Link) error {
 	return s.back.Save(l)
+}
+
+// AccectCount+1 wraps a StorageBackend.IncAccectCount
+func (s *Storage) IncAccectCount(hash string) error {
+	return s.back.IncAccessCount(hash)
+}
+
+// AccectCount+1 wraps a StorageBackend.IncDownloadCount
+func (s *Storage) IncDownloadCount(hash string) error {
+	return s.back.IncDownloadCount(hash)
 }
 
 // Delete wraps a StorageBackend.Delete

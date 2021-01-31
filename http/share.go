@@ -138,6 +138,8 @@ var sharePostHandler = withPermShare(func(w http.ResponseWriter, r *http.Request
 			UserID:          d.user.ID,
 			SharedCodeToken: "",
 			SharedCode:      "",
+			AccessCount:     0,
+			DownloadCount:   0,
 		}
 	} else {
 		tokenBuffer := make([]byte, 96)
@@ -152,6 +154,8 @@ var sharePostHandler = withPermShare(func(w http.ResponseWriter, r *http.Request
 			UserID:          d.user.ID,
 			SharedCodeToken: token,
 			SharedCode:      sharedCode,
+			AccessCount:     0,
+			DownloadCount:   0,
 		}
 	}
 
