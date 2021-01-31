@@ -17,7 +17,7 @@
         </tr>
 
         <tr v-for="link in links" :key="link.hash">
-          <td><a :href="buildLink(link.hash)" target="_blank">{{ link.path }}</a></td>
+          <td><a :href="buildLink(link.hash)" target="_blank" :title="link.path">{{ link.path }}</a></td>
           <td>
             <template v-if="link.expire !== 0">{{ humanTime(link.expire) }}</template>
             <template v-else>{{ $t('permanent') }}</template>

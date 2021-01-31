@@ -66,6 +66,10 @@ header .search-button {
   display: none;
 }
 
+.name {
+  padding: 0px 10px 0px 10px;
+}
+
 #more {
   display: none;
 }

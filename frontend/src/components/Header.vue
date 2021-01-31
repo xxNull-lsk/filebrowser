@@ -4,7 +4,7 @@
       <button @click="openSidebar" :aria-label="$t('buttons.toggleSidebar')" :title="$t('buttons.toggleSidebar')" class="action">
         <i class="material-icons">menu</i>
       </button>
-      <img :src="logoURL" alt="File Browser">
+      <img :src="logoURL" :alt="name"><span class="name">{{ name }}</span>
       <search v-if="isLogged"></search>
     </div>
     <div>
@@ -68,7 +68,7 @@ import CopyButton from './buttons/Copy'
 import ShareButton from './buttons/Share'
 import ShellButton from './buttons/Shell'
 import {mapGetters, mapState} from 'vuex'
-import { logoURL, enableExec } from '@/utils/constants'
+import { name, logoURL, enableExec } from '@/utils/constants'
 import * as api from '@/api'
 import buttons from '@/utils/buttons'
 
@@ -121,6 +121,7 @@ export default {
       'multiple'
     ]),
     logoURL: () => logoURL,
+    name: () => name,
     isExecEnabled: () => enableExec,
     isMobile () {
       return this.width <= 736
