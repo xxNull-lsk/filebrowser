@@ -1,6 +1,8 @@
 package bolt
 
 import (
+	"fmt"
+
 	"github.com/asdine/storm"
 	"github.com/asdine/storm/q"
 
@@ -71,5 +73,36 @@ func (s shareBackend) Delete(hash string) error {
 	if err == storm.ErrNotFound {
 		return nil
 	}
+	return err
+}
+
+func (s shareBackend) IncAccessCount(hash string) error {
+	var v []*share.Link
+	err := s.db.Select(q.Eq("Hash", hash)).Find(&v)
+	if err == storm.ErrNotFound || len(v) == 0 {
+		fmt.Printf("IncAccessCount: hash: %s not found", hash)
+		return nil
+	}
+
+	for _, l := range v {
+		s.db.UpdateField(l, "AccessCount", l.AccessCount+1)
+	}
+	s.db.Commit()
+
+	return err
+}
+
+func (s shareBackend) IncDownloadCount(hash string) error {
+	var v []*share.Link
+	err := s.db.Select(q.Eq("Hash", hash)).Find(&v)
+	if err == storm.ErrNotFound || len(v) == 0 {
+		return nil
+	}
+
+	for _, l := range v {
+		s.db.UpdateField(l, "DownloadCount", l.DownloadCount+1)
+	}
+	s.db.Commit()
+
 	return err
 }

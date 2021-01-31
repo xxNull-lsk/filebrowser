@@ -10,17 +10,21 @@
           <th>{{ $t('settings.path') }}</th>
           <th>{{ $t('settings.shareDuration') }}</th>
           <th v-if="user.perm.admin">{{ $t('settings.username') }}</th>
+          <th>{{ $t('settings.accessCount') }}</th>
+          <th>{{ $t('settings.downloadCount') }}</th>
           <th></th>
           <th></th>
         </tr>
 
         <tr v-for="link in links" :key="link.hash">
-          <td><a :href="buildLink(link.hash)" target="_blank">{{ link.path }}</a></td>
+          <td><a :href="buildLink(link.hash)" target="_blank" :title="link.path">{{ link.path }}</a></td>
           <td>
             <template v-if="link.expire !== 0">{{ humanTime(link.expire) }}</template>
             <template v-else>{{ $t('permanent') }}</template>
           </td>
           <td v-if="user.perm.admin">{{ link.username }}</td>
+          <td>{{ link.accessCount }}</td>
+          <td>{{ link.downloadCount }}</td>
           <td class="small">
             <button class="action"
                     @click="deleteLink($event, link)"

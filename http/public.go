@@ -21,9 +21,15 @@ var withHashFile = func(fn handleFunc) handleFunc {
 			return errToStatus(err), err
 		}
 
-		status, err := authenticateShareRequest(r, link, d.server.Salt)
+		status, err := authenticateShareRequest(r, link, d)
 		if err != nil {
 			return status, err
+		}
+
+		if path == "/" {
+			d.store.Share.IncAccectCount(link.Hash)
+		} else {
+			d.store.Share.IncDownloadCount(link.Hash)
 		}
 
 		user, err := d.store.Users.Get(d.server.Root, link.UserID)
@@ -104,7 +110,7 @@ var publicDlHandler = withHashFile(func(w http.ResponseWriter, r *http.Request, 
 	return rawDirHandler(w, r, d, file)
 })
 
-func authenticateShareRequest(r *http.Request, l *share.Link, salt string) (int, error) {
+func authenticateShareRequest(r *http.Request, l *share.Link, d *data) (int, error) {
 	if l.SharedCode == "" {
 		return 0, nil
 	}

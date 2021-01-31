@@ -2,7 +2,7 @@
 
 set -e
 
-untracked="(untracked)"
+VERSION="(untracked)"
 REPO=$(cd $(dirname $0); pwd)
 COMMIT_SHA=$(git rev-parse --short HEAD)
 ASSETS="false"
@@ -44,7 +44,13 @@ buildBinary () {
   rice embed-go
 
   cd $REPO
-  go build -a -o filebrowser -ldflags "-s -w -X github.com/filebrowser/filebrowser/v2/version.CommitSHA=$COMMIT_SHA"
+  go build -a -o filebrowser -ldflags "-s -w -X github.com/filebrowser/filebrowser/v2/version.CommitSHA=$COMMIT_SHA -X github.com/filebrowser/filebrowser/v2/version.Version=$VERSION"
+
+  export GOOS=linux
+  export GOARCH=arm
+  export GOARM=7
+  export CGO_ENABLED=0 
+  go build -a -o filebrowser_armv7 -ldflags "-s -w -X github.com/filebrowser/filebrowser/v2/version.CommitSHA=$COMMIT_SHA -X github.com/filebrowser/filebrowser/v2/version.Version=$VERSION"
 }
 
 release () {
@@ -77,14 +83,27 @@ err=$?
   echo "📦 Done! $semver released."
 }
 
+buildDockerImage() {
+    if [ "$VERSION" == "" ]; then
+        echo "build docker image failed!Not exist version string".
+        exit 1
+    fi
+    docker build -f Dockerfile.armv7.debian -t filebrowser:${VERSION}_armv7 .
+    docker save filebrowser:${VERSION}_armv7 -o filebrowser_${VERSION}_armv7.tar
+    docker build -t filebrowser:$VERSION .
+    docker save filebrowser:${VERSION} -o filebrowser_${VERSION}.tar
+    echo "build docker images succeed!"
+}
+
 usage() {
-  echo "Usage: $0 [-a] [-c] [-b] [-r <string>]" 1>&2;
+  echo "Usage: $0 [-a] [-c] [-b] [-i] [-r <string>] [-v <string>]" 1>&2;
   exit 1;
 }
 
 DEBUG="false"
+DOCKER_IMAGE="false"
 
-while getopts "bacr:d" o; do
+while getopts "bacr:dv:i" o; do
   case "${o}" in
     b)
       ASSETS="true"
@@ -98,9 +117,16 @@ while getopts "bacr:d" o; do
       ;;
     r)
       RELEASE=${OPTARG}
+      VERSION=${OPTARG}
       ;;
     d)
       DEBUG="true"
+      ;;
+    v)
+      VERSION=${OPTARG}
+      ;;
+    i)
+      DOCKER_IMAGE="true"
       ;;
     *)
       usage
@@ -123,4 +149,8 @@ fi
 
 if [ "$RELEASE" != "" ]; then
   release $RELEASE
+fi
+
+if [ "$DOCKER_IMAGE" != "" ]; then
+  buildDockerImage
 fi

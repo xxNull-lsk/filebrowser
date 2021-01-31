@@ -234,7 +234,9 @@
     "userManagement": "User Management",
     "userUpdated": "User updated!",
     "username": "Username",
-    "users": "Users"
+    "users": "Users",
+    "accessCount": "access count",
+    "downloadCount": "download count"
   },
   "sidebar": {
     "help": "Help",

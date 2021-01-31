@@ -110,7 +110,10 @@
           <h2>{{ $t("buttons.sharedCode") }}</h2>
         </div>
 
-        <div class="share_wrong" v-if="shared_code != undefined && shared_code != ''">
+        <div
+          class="share_wrong"
+          v-if="shared_code != undefined && shared_code != ''"
+        >
           {{ $t("prompts.invalidSharedCode") }}
         </div>
 
@@ -190,7 +193,9 @@ export default {
       return "insert_drive_file";
     },
     link: function () {
-      return `${baseURL}/api/public/dl/${this.hash}${this.path}?shared_code_token=${this.sharedCodeToken}`;
+      if (this.sharedCodeToken != undefined && this.sharedCodeToken != "")
+        return `${baseURL}/api/public/dl/${this.hash}${this.path}?shared_code_token=${this.sharedCodeToken}`;
+      return `${baseURL}/api/public/dl/${this.hash}${this.path}`;
     },
     fullLink: function () {
       return window.location.origin + this.link;
