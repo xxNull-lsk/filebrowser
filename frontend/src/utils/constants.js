@@ -1,6 +1,8 @@
 const name = window.FileBrowser.Name || 'File Browser'
 const disableExternal = window.FileBrowser.DisableExternal
 const baseURL = window.FileBrowser.BaseURL
+const externPreviewURL = window.FileBrowser.ExternPreviewURL
+const bindURL = window.FileBrowser.BindURL
 const staticURL = window.FileBrowser.StaticURL
 const recaptcha = window.FileBrowser.ReCaptcha
 const recaptchaKey = window.FileBrowser.ReCaptchaKey
@@ -19,6 +21,8 @@ export {
   name,
   disableExternal,
   baseURL,
+  bindURL,
+  externPreviewURL,
   logoURL,
   recaptcha,
   recaptchaKey,

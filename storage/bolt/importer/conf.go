@@ -33,12 +33,13 @@ type oldAuth struct {
 }
 
 type oldConf struct {
-	Port      string  `json:"port" yaml:"port" toml:"port"`
-	BaseURL   string  `json:"baseURL" yaml:"baseURL" toml:"baseURL"`
-	Log       string  `json:"log" yaml:"log" toml:"log"`
-	Address   string  `json:"address" yaml:"address" toml:"address"`
-	Defaults  oldDefs `json:"defaults" yaml:"defaults" toml:"defaults"`
-	ReCaptcha struct {
+	Port             string  `json:"port" yaml:"port" toml:"port"`
+	BaseURL          string  `json:"baseURL" yaml:"baseURL" toml:"baseURL"`
+	ExternPreviewURL string  `json:"externPreviewURL" yaml:"externPreviewURL" toml:"externPreviewURL"`
+	Log              string  `json:"log" yaml:"log" toml:"log"`
+	Address          string  `json:"address" yaml:"address" toml:"address"`
+	Defaults         oldDefs `json:"defaults" yaml:"defaults" toml:"defaults"`
+	ReCaptcha        struct {
 		Key    string `json:"key" yaml:"key" toml:"key"`
 		Secret string `json:"secret" yaml:"secret" toml:"secret"`
 		Host   string `json:"host" yaml:"host" toml:"host"`
@@ -138,10 +139,11 @@ func importConf(db *storm.DB, path string, sto *storage.Storage) error {
 	}
 
 	server := &settings.Server{
-		BaseURL: cfg.BaseURL,
-		Port:    cfg.Port,
-		Address: cfg.Address,
-		Log:     cfg.Log,
+		BaseURL:          cfg.BaseURL,
+		ExternPreviewURL: cfg.ExternPreviewURL,
+		Port:             cfg.Port,
+		Address:          cfg.Address,
+		Log:              cfg.Log,
 	}
 
 	var auther auth.Auther

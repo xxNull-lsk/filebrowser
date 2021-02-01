@@ -29,6 +29,10 @@ you want to change. Other options will remain unchanged.`,
 			switch flag.Name {
 			case "baseurl":
 				ser.BaseURL = mustGetString(flags, flag.Name)
+			case "externPreviewURL":
+				ser.ExternPreviewURL = mustGetString(flags, flag.Name)
+			case "bindURL":
+				ser.BindURL = mustGetString(flags, flag.Name)
 			case "root":
 				ser.Root = mustGetString(flags, flag.Name)
 			case "socket":

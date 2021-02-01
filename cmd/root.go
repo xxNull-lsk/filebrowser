@@ -62,6 +62,8 @@ func addServerFlags(flags *pflag.FlagSet) {
 	flags.String("socket", "", "socket to listen to (cannot be used with address, port, cert nor key flags)")
 	flags.Uint32("socket-perm", 0666, "unix socket file permissions")
 	flags.StringP("baseurl", "b", "", "base url")
+	flags.StringP("externPreviewURL", "", "", "extern preview URL")
+	flags.StringP("bindURL", "", "", "bind URL")
 	flags.String("cache-dir", "", "file cache directory (disabled if empty)")
 	flags.Int("img-processors", 4, "image processors count")
 	flags.Bool("disable-thumbnails", false, "disable image thumbnails")
@@ -196,6 +198,14 @@ func getRunParams(flags *pflag.FlagSet, st *storage.Storage) *settings.Server {
 
 	if val, set := getParamB(flags, "baseurl"); set {
 		server.BaseURL = val
+	}
+
+	if val, set := getParamB(flags, "externPreviewURL"); set {
+		server.ExternPreviewURL = val
+	}
+
+	if val, set := getParamB(flags, "bindURL"); set {
+		server.BindURL = val
 	}
 
 	if val, set := getParamB(flags, "log"); set {
@@ -341,13 +351,15 @@ func quickSetup(flags *pflag.FlagSet, d pythonData) {
 	checkErr(err)
 
 	ser := &settings.Server{
-		BaseURL: getParam(flags, "baseurl"),
-		Port:    getParam(flags, "port"),
-		Log:     getParam(flags, "log"),
-		TLSKey:  getParam(flags, "key"),
-		TLSCert: getParam(flags, "cert"),
-		Address: getParam(flags, "address"),
-		Root:    getParam(flags, "root"),
+		BaseURL:          getParam(flags, "baseurl"),
+		ExternPreviewURL: getParam(flags, "externPreviewURL"),
+		BindURL:          getParam(flags, "bindURL"),
+		Port:             getParam(flags, "port"),
+		Log:              getParam(flags, "log"),
+		TLSKey:           getParam(flags, "key"),
+		TLSCert:          getParam(flags, "cert"),
+		Address:          getParam(flags, "address"),
+		Root:             getParam(flags, "root"),
 	}
 
 	err = d.store.Settings.SaveServer(ser)
