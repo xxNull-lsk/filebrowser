@@ -114,9 +114,9 @@ func authenticateShareRequest(r *http.Request, l *share.Link, salt string) (int,
 		return 0, nil
 	}
 
-	shared_code := r.Header.Get("X-SHARED-CODE")
-	if l.SharedCode != shared_code {
-		return http.StatusUnauthorized, errors.New("Invalid shared code")
+	sharedCode := r.Header.Get("X-SHARED-CODE")
+	if l.SharedCode != sharedCode {
+		return http.StatusUnauthorized, errors.New("invalid shared code")
 	}
 	return 0, nil
 }
