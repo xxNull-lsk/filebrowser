@@ -1,21 +1,17 @@
 <template>
   <nav :class="{active}">
     <template v-if="isLogged">
-      <router-link class="action" to="/files/" :aria-label="$t('sidebar.myFiles')" :title="$t('sidebar.myFiles')">
-        <i class="material-icons">folder</i>
-        <span>{{ $t('sidebar.myFiles') }}</span>
-      </router-link>
 
-      <div v-if="user.perm.create">
-        <button @click="$store.commit('showHover', 'newDir')" class="action" :aria-label="$t('sidebar.newFolder')" :title="$t('sidebar.newFolder')">
-          <i class="material-icons">create_new_folder</i>
-          <span>{{ $t('sidebar.newFolder') }}</span>
-        </button>
+      <div>
+        <router-link class="action" to="/files/" :aria-label="$t('sidebar.myFiles')" :title="$t('sidebar.myFiles')">
+          <i class="material-icons">folder</i>
+          <span>{{ $t('sidebar.myFiles') }}</span>
+        </router-link>
 
-        <button @click="$store.commit('showHover', 'newFile')" class="action" :aria-label="$t('sidebar.newFile')" :title="$t('sidebar.newFile')">
-          <i class="material-icons">note_add</i>
-          <span>{{ $t('sidebar.newFile') }}</span>
-        </button>
+        <router-link class="action" to="/settings/shares" :aria-label="$t('settings.shareManagement')" :title="$t('settings.shareManagement')">
+          <i class="material-icons">share</i>
+          <span>{{ $t('settings.shareManagement') }}</span>
+        </router-link>
       </div>
 
       <div>
@@ -28,6 +24,13 @@
           <i class="material-icons">exit_to_app</i>
           <span>{{ $t('sidebar.logout') }}</span>
         </button>
+      </div>
+
+      <div>
+          <router-link class="favorite" v-for="favorite in favorites" :key="favorite.hash" to="favorite.path" :aria-label="favorite.name" :title="favorite.name">
+            <i class="material-icons">{{ favorite.type }}</i>
+            <span>{{ favorite.name }}</span>
+          </router-link>
       </div>
     </template>
     <template v-else>
@@ -55,11 +58,26 @@
 
 <script>
 import { mapState, mapGetters } from 'vuex'
+import { favorite as api } from "@/api";
 import * as auth from '@/utils/auth'
 import { version, signup, disableExternal, noAuth, authMethod } from '@/utils/constants'
 
 export default {
   name: 'sidebar',
+  data: function () {
+    return {
+      favorites: [],
+    };
+  },
+  async beforeMount() {
+    try {
+      const favorites = await api.list();
+      this.favorites = favorites;
+      this.sort();
+    } catch (e) {
+      this.$showError(e);
+    }
+  },
   computed: {
     ...mapState([ 'user' ]),
     ...mapGetters([ 'isLogged' ]),

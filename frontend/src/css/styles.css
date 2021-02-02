@@ -17,6 +17,29 @@
   color: var(--blue);
 }
 
+.favorite {
+  display: inline-block;
+  cursor: pointer;
+  transition: 0.2s ease all;
+  border: 0;
+  margin: 0;
+  color: #546E7A;
+  border-radius: 50%;
+  background: transparent;
+  padding: 0 0 0 1.6em;
+  box-shadow: none;
+  vertical-align: middle;
+  text-align: left;
+  position: relative;
+  vertical-align: middle;
+}
+
+.favorite i {
+  padding: 0.2em;
+  transition: .1s ease-in-out all;
+  border-radius: 50%;
+}
+
 /* * * * * * * * * * * * * * * *
  *            ACTION           *
  * * * * * * * * * * * * * * * */

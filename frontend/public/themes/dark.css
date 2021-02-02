@@ -52,6 +52,19 @@ header {
   color: var(--textPrimary);
 }
 
+.favorite {
+  color: var(--textSecondary) !important;
+}
+.favorite:hover {
+  background-color: rgba(255, 255, 255, .1);
+}
+.favorite i {
+  color: var(--icon) !important;
+}
+.favorite .counter {
+  border-color: var(--surfacePrimary);
+}
+
 .action {
   color: var(--textPrimary) !important;
 }

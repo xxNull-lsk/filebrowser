@@ -151,6 +151,6 @@ if [ "$RELEASE" != "" ]; then
   release $RELEASE
 fi
 
-if [ "$DOCKER_IMAGE" != "" ]; then
+if [ "$DOCKER_IMAGE" = "true" ]; then
   buildDockerImage
 fi
