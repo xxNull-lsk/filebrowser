@@ -58,7 +58,7 @@
 
 <script>
 import { mapState, mapGetters } from 'vuex'
-import { favorite as api } from "@/api";
+import { favorites as favorite_api } from "@/api";
 import * as auth from '@/utils/auth'
 import { version, signup, disableExternal, noAuth, authMethod } from '@/utils/constants'
 
@@ -71,11 +71,14 @@ export default {
   },
   async beforeMount() {
     try {
-      const favorites = await api.list();
+      console.info("geting favorite list", this.$route.path)
+      const favorites = await favorite_api.list();
+      console.info("geting favorite list succeed", this.$route.path)
       this.favorites = favorites;
       this.sort();
     } catch (e) {
-      this.$showError(e);
+      console.info("geting favorite list failed", this.$route.path)
+      console.error(e)
     }
   },
   computed: {

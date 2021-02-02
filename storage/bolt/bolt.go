@@ -4,6 +4,7 @@ import (
 	"github.com/asdine/storm"
 
 	"github.com/filebrowser/filebrowser/v2/auth"
+	"github.com/filebrowser/filebrowser/v2/favorite"
 	"github.com/filebrowser/filebrowser/v2/settings"
 	"github.com/filebrowser/filebrowser/v2/share"
 	"github.com/filebrowser/filebrowser/v2/storage"
@@ -14,6 +15,7 @@ import (
 func NewStorage(db *storm.DB) (*storage.Storage, error) {
 	userStore := users.NewStorage(usersBackend{db: db})
 	shareStore := share.NewStorage(shareBackend{db: db})
+	favoriteStore := favorite.NewStorage(favoriteBackend{db: db})
 	settingsStore := settings.NewStorage(settingsBackend{db: db})
 	authStore := auth.NewStorage(authBackend{db: db}, userStore)
 
@@ -26,6 +28,7 @@ func NewStorage(db *storm.DB) (*storage.Storage, error) {
 		Auth:     authStore,
 		Users:    userStore,
 		Share:    shareStore,
+		Favorite: favoriteStore,
 		Settings: settingsStore,
 	}, nil
 }

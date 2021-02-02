@@ -59,6 +59,7 @@ func NewHandler(imgSvc ImgService, fileCache FileCache, store *storage.Storage, 
 	api.Path("/favorites").Handler(monkey(favoriteListHandler, "/api/favorites")).Methods("GET")
 	api.PathPrefix("/favorite").Handler(monkey(favoritePostHandler, "/api/favorite")).Methods("POST")
 	api.PathPrefix("/favorite").Handler(monkey(favoriteDeleteHandler, "/api/favorite")).Methods("DELETE")
+	api.PathPrefix("/favorite").Handler(monkey(favoriteGetHandler, "/api/favorite")).Methods("GET")
 
 	api.Handle("/settings", monkey(settingsGetHandler, "")).Methods("GET")
 	api.Handle("/settings", monkey(settingsPutHandler, "")).Methods("PUT")

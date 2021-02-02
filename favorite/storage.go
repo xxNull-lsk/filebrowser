@@ -1,17 +1,11 @@
 package favorite
 
-import (
-	"time"
-
-	"github.com/filebrowser/filebrowser/v2/errors"
-)
-
-// StorageBackend is the interface to implement for a share storage.
+// StorageBackend is the interface to implement for a favorite storage.
 type StorageBackend interface {
 	FindByUserID(id uint) ([]*Favorite, error)
-	Has(path string, id uint) error
+	Get(path string, id uint) (*Favorite, error)
 	Save(f *Favorite) error
-	Delete(path string, id uint) error
+	Delete(path string) error
 }
 
 // Storage is a storage.
@@ -40,12 +34,12 @@ func (s *Storage) Save(f *Favorite) error {
 	return s.back.Save(f)
 }
 
-// Has wraps a StorageBackend.Has
-func (s *Storage) Has(path string, id uint) error {
-	return s.back.Has(path, id)
+// Get wraps a StorageBackend.Get
+func (s *Storage) Get(path string, id uint) (*Favorite, error) {
+	return s.back.Get(path, id)
 }
 
 // Delete wraps a StorageBackend.Delete
-func (s *Storage) Delete(path string, id uint) error {
-	return s.back.Delete(path, id)
+func (s *Storage) Delete(hash string) error {
+	return s.back.Delete(hash)
 }

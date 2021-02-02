@@ -39,6 +39,7 @@
 
           <new-file-button v-show="showNewFileButton"/>
           <new-dir-button v-show="showNewDirButton"/>
+          <favorite-button/>
           <shell-button v-if="isExecEnabled && !isSharing && user.perm.execute" />
           <switch-button v-show="isListing"></switch-button>
           <download-button v-show="showDownloadButton"></download-button>
@@ -71,6 +72,7 @@ import ShareButton from './buttons/Share'
 import ShellButton from './buttons/Shell'
 import NewFileButton from './buttons/NewFile'
 import NewDirButton from './buttons/NewDir'
+import FavoriteButton from './buttons/Favorite'
 import {mapGetters, mapState} from 'vuex'
 import { name, logoURL, enableExec } from '@/utils/constants'
 import * as api from '@/api'
@@ -91,7 +93,8 @@ export default {
     MoveButton,
     ShellButton,
     NewFileButton,
-    NewDirButton
+    NewDirButton,
+    FavoriteButton
   },
   data: function () {
     return {
