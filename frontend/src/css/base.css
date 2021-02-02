@@ -58,6 +58,69 @@ nav {
   left: 0;
 }
 
+nav .favorite {
+  width: 100%;
+  display: block;
+  border-radius: 0;
+  font-size: 0.8em;
+  padding-top: 0.2em;
+  padding-bottom: 0.2em;
+  padding-left: 1.2em;
+  padding-right: 0.2em;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+nav .favorite * {
+  vertical-align: middle;
+}
+
+.favorite_title {
+  display: block;
+  text-align: center;
+  padding: 0.2em;
+  margin: 0;
+  border-radius: 0;
+  font-size: 0.6em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.favorite_left {
+  margin-left: -32px;
+  width: 100%;
+  float: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.favorite_content {
+  margin-left: 32px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.favorite_right {
+  width: 32px; 
+  float: right;
+}
+
+nav .favorite .delete {
+  font-size: 0.8em;
+  padding: 0;
+  margin: 0;
+  line-height: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 32px;
+  border: 0px none;
+  border-radius: 0;
+}
+
 nav .action {
   width: 100%;
   display: block;

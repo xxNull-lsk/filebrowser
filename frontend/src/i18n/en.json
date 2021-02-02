@@ -29,6 +29,7 @@
     "select": "Select",
     "selectMultiple": "Select multiple",
     "share": "Share",
+    "submit": "",
     "shell": "Toggle shell",
     "submit": "Submit",
     "switchView": "Switch view",
@@ -36,7 +37,8 @@
     "update": "Update",
     "upload": "Upload",
     "sharedCode": "Shared code",
-    "optionalSharedCode": "Shared code(optional)"
+    "optionalSharedCode": "Shared code(optional)",
+    "favorite": "Favorite"
   },
   "download": {
     "downloadFile": "Download File",
@@ -149,7 +151,9 @@
     "uploadMessage": "Select an option to upload.",
     "downloadPrompts": "Download url: {0}",
     "downloadPromptsWithSharedCode": "Download url: {0}  Shared code: {1}",
-    "invalidSharedCode": "Invalid shared code."
+    "invalidSharedCode": "Invalid shared code.",
+    "favorite": "Favorite",
+    "favoriteMessage": "Add this {0} to favrite"
   },
   "search": {
     "images": "Images",
@@ -249,7 +253,9 @@
     "preview": "Preview",
     "settings": "Settings",
     "signup": "Signup",
-    "siteSettings": "Site Settings"
+    "siteSettings": "Site Settings",
+    "myShares": "My Shares",
+    "favorite": "Favorite"
   },
   "success": {
     "linkCopied": "Link copied!"

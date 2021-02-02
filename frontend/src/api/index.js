@@ -1,5 +1,6 @@
 import * as files from './files'
 import * as share from './share'
+import * as favorites from './favorites'
 import * as users from './users'
 import * as settings from './settings'
 import search from './search'
@@ -11,5 +12,6 @@ export {
   users,
   settings,
   commands,
-  search
+  search,
+  favorites
 }

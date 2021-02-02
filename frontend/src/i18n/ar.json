@@ -28,11 +28,15 @@
     "select": "تحديد",
     "selectMultiple": "تحديد متعدد",
     "share": "مشاركة",
+    "submit": "",
     "shell": "Toggle shell",
     "switchView": "تغيير العرض",
     "toggleSidebar": "تبديل الشريط الجانبي",
     "update": "تحديث",
-    "upload": "رفع"
+    "upload": "رفع",
+    "sharedCode": "",
+    "optionalSharedCode": "",
+    "favorite": ""
   },
   "download": {
     "downloadFile": "Download File",
@@ -141,7 +145,12 @@
     "show": "عرض",
     "size": "الحجم",
     "upload": "",
-    "uploadMessage": ""
+    "uploadMessage": "",
+    "downloadPrompts": "",
+    "downloadPromptsWithSharedCode": "",
+    "invalidSharedCode": "",
+    "favorite": "",
+    "favoriteMessage": ""
   },
   "search": {
     "images": "الصور",
@@ -226,7 +235,9 @@
     "userManagement": "إدارة المستخدمين",
     "userUpdated": "تم تعديل المستخدم",
     "username": "إسم المستخدم",
-    "users": "المستخدمين"
+    "users": "المستخدمين",
+    "accessCount": "",
+    "downloadCount": ""
   },
   "sidebar": {
     "help": "مساعدة",
@@ -239,7 +250,9 @@
     "preview": "معاينة",
     "settings": "الإعدادات",
     "signup": "Signup",
-    "siteSettings": "إعدادات الموقع"
+    "siteSettings": "إعدادات الموقع",
+    "myShares": "My Shares",
+    "favorite": "Favorite"
   },
   "success": {
     "linkCopied": "تم نسخ الملف"

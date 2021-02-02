@@ -28,11 +28,15 @@
     "select": "Välj",
     "selectMultiple": "Välj flera",
     "share": "Dela",
+    "submit": "",
     "shell": "Växla skal",
     "switchView": "Byt vy",
     "toggleSidebar": "Växla sidofält",
     "update": "Uppdatera",
-    "upload": "Ladda upp"
+    "upload": "Ladda upp",
+    "sharedCode": "",
+    "optionalSharedCode": "",
+    "favorite": ""
   },
   "download": {
     "downloadFile": "Ladda ner fil",
@@ -141,7 +145,12 @@
     "show": "Visa",
     "size": "Storlek",
     "upload": "",
-    "uploadMessage": ""
+    "uploadMessage": "",
+    "downloadPrompts": "",
+    "downloadPromptsWithSharedCode": "",
+    "invalidSharedCode": "",
+    "favorite": "",
+    "favoriteMessage": ""
   },
   "search": {
     "images": "Bilder",
@@ -226,7 +235,9 @@
     "userManagement": "Användarehantering",
     "userUpdated": "Användare uppdaterad!",
     "username": "Användarnamn",
-    "users": "Användare"
+    "users": "Användare",
+    "accessCount": "",
+    "downloadCount": ""
   },
   "sidebar": {
     "help": "Hjälp",
@@ -239,7 +250,9 @@
     "preview": "Visa",
     "settings": "Inställningar",
     "signup": "Registrera",
-    "siteSettings": "System inställningar"
+    "siteSettings": "System inställningar",
+    "myShares": "",
+    "favorite": ""
   },
   "success": {
     "linkCopied": "Länk kopierad"

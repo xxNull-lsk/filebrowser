@@ -45,7 +45,9 @@ buildBinary () {
   rice embed-go
 
   cd $REPO
-  go build -a -o filebrowser -ldflags "-s -w -X github.com/filebrowser/filebrowser/v2/version.CommitSHA=$COMMIT_SHA -X github.com/filebrowser/filebrowser/v2/version.Version=$VERSION"
+  #go build -a -o filebrowser -ldflags "-s -w -X github.com/filebrowser/filebrowser/v2/version.CommitSHA=$COMMIT_SHA -X github.com/filebrowser/filebrowser/v2/version.Version=$VERSION"
+  go build -a -o filebrowser -gcflags "-N -l" -ldflags "-X github.com/filebrowser/filebrowser/v2/version.CommitSHA=$COMMIT_SHA -X github.com/filebrowser/filebrowser/v2/version.Version=$VERSION"
+  return
 
   export GOOS=linux
   export GOARCH=arm
@@ -151,6 +153,6 @@ if [ "$RELEASE" != "" ]; then
   release $RELEASE
 fi
 
-if [ "$DOCKER_IMAGE" != "" ]; then
+if [ "$DOCKER_IMAGE" = "true" ]; then
   buildDockerImage
 fi

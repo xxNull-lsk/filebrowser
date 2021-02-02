@@ -28,11 +28,15 @@
     "select": "選択",
     "selectMultiple": "複数選択",
     "share": "シェア",
+    "submit": "",
     "shell": "Toggle shell",
     "switchView": "表示を切り替わる",
     "toggleSidebar": "サイドバーを表示する",
     "update": "更新",
-    "upload": "アップロード"
+    "upload": "アップロード",
+    "sharedCode": "",
+    "optionalSharedCode": "",
+    "favorite": ""
   },
   "download": {
     "downloadFile": "Download File",
@@ -141,7 +145,12 @@
     "show": "表示",
     "size": "サイズ",
     "upload": "",
-    "uploadMessage": ""
+    "uploadMessage": "",
+    "downloadPrompts": "",
+    "downloadPromptsWithSharedCode": "",
+    "invalidSharedCode": "",
+    "favorite": "",
+    "favoriteMessage": ""
   },
   "search": {
     "images": "画像",
@@ -226,7 +235,9 @@
     "userManagement": "ユーザー管理",
     "userUpdated": "ユーザーは更新されました！",
     "username": "ユーザー名",
-    "users": "ユーザー"
+    "users": "ユーザー",
+    "accessCount": "",
+    "downloadCount": ""
   },
   "sidebar": {
     "help": "ヘルプ",
@@ -239,7 +250,9 @@
     "preview": "プレビュー",
     "settings": "設定",
     "signup": "Signup",
-    "siteSettings": "サイト設定"
+    "siteSettings": "サイト設定",
+    "myShares": "",
+    "favorite": ""
   },
   "success": {
     "linkCopied": "リンクがコピーされました！"
