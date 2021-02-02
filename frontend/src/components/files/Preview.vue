@@ -74,7 +74,7 @@
     </button>
 
     <template v-if="!loading">
-      <div class="preview">
+      <div class="preview" v-if="!hasExternPreviewURL">
         <ExtendedImage v-if="req.type == 'image'" :src="raw"></ExtendedImage>
         <audio
           v-else-if="req.type == 'audio'"
@@ -101,22 +101,21 @@
           :data="raw"
         ></object>
         <a v-else-if="req.type == 'blob'" :href="download">
-          <h2
-            v-if="!hasExternPreviewURL"
-            class="message"
-          >
+          <h2 class="message">
             {{ $t("buttons.download") }}
             <i class="material-icons">file_download</i>
           </h2>
-          <iframe
-            v-if="hasExternPreviewURL"
-            :src="externPreviewUrl"
-            frameborder="0"
-            scrolling="auto"
-            width="100%"
-            height="100%"
-          ></iframe>
         </a>
+      </div>
+
+      <div class="preview" v-if="hasExternPreviewURL">
+        <iframe
+          :src="externPreviewUrl"
+          frameborder="0"
+          scrolling="auto"
+          width="100%"
+          height="100%"
+        ></iframe>
       </div>
     </template>
 
@@ -140,6 +139,7 @@ import DeleteButton from "@/components/buttons/Delete";
 import RenameButton from "@/components/buttons/Rename";
 import DownloadButton from "@/components/buttons/Download";
 import ExtendedImage from "./ExtendedImage";
+import { Base64 } from "js-base64";
 
 const mediaTypes = ["image", "video", "audio", "blob"];
 
@@ -161,7 +161,7 @@ export default {
       name: "",
       subtitles: [],
       fullSize: false,
-      hasExternPreviewURL: false
+      hasExternPreviewURL: false,
     };
   },
   computed: {
@@ -197,7 +197,7 @@ export default {
       }
       let names = this.req.path.split("/");
       url += this.previewUrl + "&fullfilename=" + names[names.length - 1];
-      return `${externPreviewURL}${encodeURIComponent(url)}`;
+      return `${externPreviewURL}${encodeURIComponent(Base64.encode(url))}`;
     },
     raw() {
       return `${this.previewUrl}&inline=true`;
@@ -219,8 +219,8 @@ export default {
     this.$store.commit("setPreviewMode", true);
     this.listing = this.oldReq.items;
     this.$root.$on("preview-deleted", this.deleted);
-    console.error(externPreviewURL)
-    if (externPreviewURL != ''){
+    console.error(externPreviewURL);
+    if (externPreviewURL != "") {
       this.hasExternPreviewURL = true;
     }
     this.updatePreview();

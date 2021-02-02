@@ -14,6 +14,7 @@ debugInfo () {
   echo "Build assets:   $ASSETS"
   echo "Build binary:   $BINARY"
   echo "Release:        $RELEASE"
+  echo "Version:        $VERSION"
 }
 
 buildAssets () {
@@ -26,7 +27,7 @@ buildAssets () {
   if [ "$CI" = "true" ]; then
     npm ci
   else
-    npm install
+    cnpm install
   fi
 
   npm run lint
