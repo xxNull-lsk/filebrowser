@@ -63,14 +63,13 @@ release () {
     echo "❌ This release script requires a single argument corresponding to the semver to be released. See semver.org"
     exit 1
   fi
-echo "1"
+  
   GREP="grep"
   if [ -x "$(command -v ggrep)" ]; then
     GREP="ggrep"
   fi
   semver=$(echo "$1" | $GREP -P "^v(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)")
-err=$?
-  if [ $err -ne 0 ]; then
+  if [ $? -ne 0 ]; then
     echo "❌ Not valid semver format. See semver.org"
     exit 1
   fi
