@@ -5,7 +5,7 @@
     </div>
 
     <div class="card-content">
-      <p>{{ $t('prompts.favoriteMessage') }}</p>
+      <p>{{ $t('prompts.favoriteMessage', [this.path]) }}</p>
       <input class="input input--block" v-focus type="text" @keyup.enter="submit" v-model.trim="name">
     </div>
 
@@ -34,28 +34,42 @@ export default {
   name: 'favorite',
   data: function() {
     return {
-      name: ''
+      name: '',
+      path: ''
     };
   },
   computed: {
     ...mapState(['req', 'selected', 'selectedCount']),
     ...mapGetters(['isListing'])
   },
-  methods: {
-    submit: async function() {
+  async beforeMount() {
       let path = ''
 
-      if (this.selectedCount != undefined && this.selectedCount !== 0) {
+      if (this.selected != undefined && this.selected.length > 0) {
         path = this.req.items[this.selected[0]].url
       } else {
         path = this.req.url
       }
-      "".s
-      console.error(path)
+      path = path.replace(/\/$/g, '')
+      this.path = path
+      var items = path.split('/')
+      if (items.length > 0) {
+        this.name = items[items.length - 1]
+      }
+  },
+  methods: {
+    submit: async function() {
+      let path = ''
+
+      if (this.selected != undefined && this.selected.length > 0) {
+        path = this.req.items[this.selected[0]].url
+      } else {
+        path = this.req.url
+      }
 
       try {
+        path = path.replace(/^.files/g, '')
         await favorite_api.create(path, this.name)
-        this.$router.push({ path: this.$route.path })
       } catch (e) {
         console.error(e)
         //this.$showError(e)

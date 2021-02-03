@@ -147,7 +147,9 @@
     "uploadMessage": "选择上传项。",
     "downloadPrompts": "下载链接：{0}",
     "downloadPromptsWithSharedCode": "下载链接：{0}  提取码：{1}",
-    "invalidSharedCode": "提取码无效！"
+    "invalidSharedCode": "提取码无效！",
+    "favorite": "收藏夹",
+    "favoriteMessage": "将 {0} 添加到收藏夹"
   },
   "search": {
     "images": "图像",

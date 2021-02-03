@@ -100,7 +100,7 @@ var favoritePostHandler = withPermFavorite(func(w http.ResponseWriter, r *http.R
 	if fs.IsDir() {
 		t = "folder"
 	} else {
-		t = "file"
+		t = "insert_drive_file"
 	}
 
 	s = &favorite.Favorite{

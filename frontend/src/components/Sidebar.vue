@@ -27,7 +27,7 @@
       </div>
 
       <div>
-          <router-link class="favorite" v-for="favorite in favorites" :key="favorite.hash" to="favorite.path" :aria-label="favorite.name" :title="favorite.name">
+          <router-link class="favorite" v-for="favorite in favorites" :key="favorite.hash" :to="'/files' + favorite.path" :aria-label="favorite.name" :title="favorite.name">
             <i class="material-icons">{{ favorite.type }}</i>
             <span>{{ favorite.name }}</span>
           </router-link>
