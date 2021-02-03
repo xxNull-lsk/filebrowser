@@ -45,18 +45,16 @@ export default {
     submit: async function() {
       let path = ''
 
-      if (this.selectedCount !== 0) {
+      if (this.selectedCount != undefined && this.selectedCount !== 0) {
         path = this.req.items[this.selected[0]].url
       } else {
         path = this.req.url
       }
-
+      "".s
       console.error(path)
 
       try {
-        console.error("api.create before")
         await favorite_api.create(path, this.name)
-        console.error("api.create after")
         this.$router.push({ path: this.$route.path })
       } catch (e) {
         console.error(e)

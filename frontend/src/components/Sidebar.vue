@@ -71,13 +71,9 @@ export default {
   },
   async beforeMount() {
     try {
-      console.info("geting favorite list", this.$route.path)
       const favorites = await favorite_api.list();
-      console.info("geting favorite list succeed", this.$route.path)
       this.favorites = favorites;
-      this.sort();
     } catch (e) {
-      console.info("geting favorite list failed", this.$route.path)
       console.error(e)
     }
   },

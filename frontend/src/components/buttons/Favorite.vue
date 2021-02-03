@@ -6,13 +6,15 @@
     class="action"
     id="favorite-button"
   >
-    <i class="material-icons">{{favoriteInfo == undefined?"favorite-border":"favorite"}}</i>
+    <i class="material-icons">{{
+      favoriteInfo == undefined ? "favorite_border" : "favorite"
+    }}</i>
     <span>{{ $t("buttons.favorite") }}</span>
   </button>
 </template>
 
 <script>
-import { favorites as favorite_api } from '@/api'
+import { favorites as favorite_api } from "@/api";
 
 export default {
   name: "favorite-button",
@@ -25,7 +27,11 @@ export default {
     try {
       this.favoriteInfo = await favorite_api.get(this.$route.path);
     } catch (e) {
-      this.$showError(e)
+      if (e.message == "404") {
+        this.favoriteInfo = undefined;
+      } else {
+        console.error(e.message);
+      }
     }
   },
   methods: {

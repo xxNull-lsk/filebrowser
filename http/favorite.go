@@ -4,15 +4,22 @@ import (
 	"crypto/rand"
 	"encoding/base64"
 	"encoding/json"
-	"fmt"
 	"net/http"
 	"strings"
 
+	"github.com/asdine/storm"
 	"github.com/filebrowser/filebrowser/v2/errors"
 	"github.com/filebrowser/filebrowser/v2/favorite"
 )
 
-var favoriteListHandler = func(w http.ResponseWriter, r *http.Request, d *data) (int, error) {
+func withPermFavorite(fn handleFunc) handleFunc {
+	return withUser(func(w http.ResponseWriter, r *http.Request, d *data) (int, error) {
+
+		return fn(w, r, d)
+	})
+}
+
+var favoriteListHandler = withPermFavorite(func(w http.ResponseWriter, r *http.Request, d *data) (int, error) {
 	var (
 		s   []*favorite.Favorite
 		err error
@@ -27,26 +34,26 @@ var favoriteListHandler = func(w http.ResponseWriter, r *http.Request, d *data) 
 	}
 
 	return renderJSON(w, r, s)
-}
+})
 
-var favoriteGetHandler = func(w http.ResponseWriter, r *http.Request, d *data) (int, error) {
-
+var favoriteGetHandler = withPermFavorite(func(w http.ResponseWriter, r *http.Request, d *data) (int, error) {
 	if r.Body != nil {
 		r.Body.Close()
 	}
 
 	_, path := ifPathWithName(r)
-	fmt.Println(path)
-
 	s, err := d.store.Favorite.Get(path, d.user.ID)
 	if err != nil {
+		if err == storm.ErrNotFound {
+			return http.StatusNotFound, err
+		}
 		return http.StatusInternalServerError, err
 	}
 
 	return renderJSON(w, r, s)
-}
+})
 
-var favoriteDeleteHandler = func(w http.ResponseWriter, r *http.Request, d *data) (int, error) {
+var favoriteDeleteHandler = withPermFavorite(func(w http.ResponseWriter, r *http.Request, d *data) (int, error) {
 	hash := strings.TrimSuffix(r.URL.Path, "/")
 	hash = strings.TrimPrefix(hash, "/")
 
@@ -56,14 +63,14 @@ var favoriteDeleteHandler = func(w http.ResponseWriter, r *http.Request, d *data
 
 	err := d.store.Favorite.Delete(hash)
 	return errToStatus(err), err
-}
+})
 
 type createfavoriteRequest struct {
 	Path string `json:"path"`
 	Name string `json:"name"`
 }
 
-var favoritePostHandler = func(w http.ResponseWriter, r *http.Request, d *data) (int, error) {
+var favoritePostHandler = withPermFavorite(func(w http.ResponseWriter, r *http.Request, d *data) (int, error) {
 	var s *favorite.Favorite
 
 	if r.Body == nil {
@@ -109,4 +116,4 @@ var favoritePostHandler = func(w http.ResponseWriter, r *http.Request, d *data) 
 	}
 
 	return renderJSON(w, r, s)
-}
+})

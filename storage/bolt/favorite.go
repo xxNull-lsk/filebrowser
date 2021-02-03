@@ -1,8 +1,6 @@
 package bolt
 
 import (
-	"fmt"
-
 	"github.com/asdine/storm"
 	"github.com/asdine/storm/q"
 	"github.com/filebrowser/filebrowser/v2/errors"
@@ -34,8 +32,7 @@ func (s favoriteBackend) Delete(hash string) error {
 func (s favoriteBackend) Get(path string, id uint) (*favorite.Favorite, error) {
 	var v []*favorite.Favorite
 
-	fmt.Printf("favoriteBackend: %s\n", path)
-	err := s.db.Select(q.Eq("Path", path), q.Eq("UserID", id)).Find(v)
+	err := s.db.Select(q.Eq("Path", path), q.Eq("UserID", id)).Find(&v)
 	if err == storm.ErrNotFound || len(v) == 0 {
 		return nil, err
 	}

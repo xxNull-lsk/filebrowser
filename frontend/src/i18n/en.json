@@ -36,7 +36,8 @@
     "update": "Update",
     "upload": "Upload",
     "sharedCode": "Shared code",
-    "optionalSharedCode": "Shared code(optional)"
+    "optionalSharedCode": "Shared code(optional)",
+    "favorite": "Favorite"
   },
   "download": {
     "downloadFile": "Download File",
