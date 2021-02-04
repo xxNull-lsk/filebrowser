@@ -19,7 +19,6 @@ export async function remove(hash) {
 }
 
 export async function create(path, name) {
-    console.error("function create")
     return fetchJSON('/api/favorite', {
         method: 'POST',
         body: JSON.stringify({

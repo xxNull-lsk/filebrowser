@@ -28,11 +28,15 @@
     "select": "Выбрать",
     "selectMultiple": "Мультивыбор",
     "share": "Поделиться",
+    "submit": "",
     "shell": "Командная строка",
     "switchView": "Вид",
     "toggleSidebar": "Боковая панель",
     "update": "Обновить",
-    "upload": "Загрузить"
+    "upload": "Загрузить",
+    "sharedCode": "",
+    "optionalSharedCode": "",
+    "favorite": ""
   },
   "download": {
     "downloadFile": "Скачать файл",
@@ -141,7 +145,12 @@
     "show": "Показать",
     "size": "Размер",
     "upload": "Загрузить",
-    "uploadMessage": "Выберите вариант для загрузки."
+    "uploadMessage": "Выберите вариант для загрузки.",
+    "downloadPrompts": "",
+    "downloadPromptsWithSharedCode": "",
+    "invalidSharedCode": "",
+    "favorite": "",
+    "favoriteMessage": ""
   },
   "search": {
     "images": "Изображения",
@@ -226,7 +235,9 @@
     "userManagement": "Управление пользователями",
     "userUpdated": "Пользователь изменен!",
     "username": "Имя пользователя",
-    "users": "Пользователи"
+    "users": "Пользователи",
+    "accessCount": "",
+    "downloadCount": ""
   },
   "sidebar": {
     "help": "Помощь",
@@ -239,7 +250,9 @@
     "preview": "Предпросмотр",
     "settings": "Настройки",
     "signup": "Зарегистрироваться",
-    "siteSettings": "Настройки сайта"
+    "siteSettings": "Настройки сайта",
+    "myShares": "",
+    "favorite": ""
   },
   "success": {
     "linkCopied": "Ссылка скопирована!"

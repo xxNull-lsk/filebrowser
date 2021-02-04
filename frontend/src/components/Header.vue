@@ -4,7 +4,8 @@
       <button @click="openSidebar" :aria-label="$t('buttons.toggleSidebar')" :title="$t('buttons.toggleSidebar')" class="action">
         <i class="material-icons">menu</i>
       </button>
-      <img :src="logoURL" :alt="name"><span class="name">{{ name }}</span>
+      <img :src="logoURL" :alt="name">
+      <span>{{ name }}</span>
       <search v-if="isLogged"></search>
     </div>
     <div>

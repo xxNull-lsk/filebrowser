@@ -27,10 +27,21 @@
       </div>
 
       <div>
-          <router-link class="favorite" v-for="favorite in favorites" :key="favorite.hash" :to="'/files' + favorite.path" :aria-label="favorite.name" :title="favorite.name">
-            <i class="material-icons">{{ favorite.type }}</i>
-            <span>{{ favorite.name }}</span>
+        <span class="favorite_title">{{$t('sidebar.favorite')}}</span>
+        <div v-for="favorite in favorites" class="favorite" v-bind:key="favorite">
+          <router-link class="favorite_left" :key="favorite.hash" :to="'/files' + favorite.path" :aria-label="favorite.name" :title="favorite.name">
+            <div class="favorite_content">
+              <i class="material-icons">{{ favorite.type }}</i>
+              <span>{{ favorite.name }}</span>
+            </div>
           </router-link>
+          
+          <div class="favorite_right">
+            <button class="delete" @click="deleteFavorite(favorite.hash)" id="deleteFavorite">
+              <i class="material-icons">delete</i>
+            </button>
+          </div>
+        </div>
       </div>
     </template>
     <template v-else>
@@ -45,14 +56,14 @@
       </router-link>
     </template>
 
-    <p class="credits">
+    <div class="credits">
       <span>
         <span v-if="disableExternal">File Browser</span>
-        <a v-else rel="noopener noreferrer" target="_blank" href="https://github.com/filebrowser/filebrowser">File Browser</a>
+        <a v-else rel="noopener noreferrer" target="_blank" href="https://github.com/xxnull-lsk/filebrowser">File Browser</a>
         <span> {{ version }}</span>
       </span>
       <span><a @click="help">{{ $t('sidebar.help') }}</a></span>
-    </p>
+    </div>
   </nav>
 </template>
 
@@ -70,12 +81,12 @@ export default {
     };
   },
   async beforeMount() {
-    try {
-      const favorites = await favorite_api.list();
-      this.favorites = favorites;
-    } catch (e) {
-      console.error(e)
-    }
+    this.getFavorites()
+
+    this.$root.$on("favorite-created", this.getFavorites);
+  },
+  beforeDestroy() {
+    this.$root.$off("favorite-created", this.deleted);
   },
   computed: {
     ...mapState([ 'user' ]),
@@ -90,6 +101,17 @@ export default {
     authMethod: () => authMethod
   },
   methods: {
+    deleteFavorite(hash){
+      favorite_api.remove(hash).then(this.getFavorites)
+    },
+    async getFavorites() {
+      try {
+        const favorites = await favorite_api.list();
+        this.favorites = favorites;
+      } catch (e) {
+        console.error(e)
+      }
+    },
     help () {
       this.$store.commit('showHover', 'help')
     },

@@ -29,6 +29,7 @@
     "select": "Select",
     "selectMultiple": "Select multiple",
     "share": "Share",
+    "submit": "",
     "shell": "Toggle shell",
     "submit": "Submit",
     "switchView": "Switch view",
@@ -252,7 +253,9 @@
     "preview": "Preview",
     "settings": "Settings",
     "signup": "Signup",
-    "siteSettings": "Site Settings"
+    "siteSettings": "Site Settings",
+    "myShares": "My Shares",
+    "favorite": "Favorite"
   },
   "success": {
     "linkCopied": "Link copied!"

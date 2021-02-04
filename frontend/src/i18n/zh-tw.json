@@ -28,11 +28,15 @@
     "select": "選擇",
     "selectMultiple": "選擇多個",
     "share": "分享",
+    "submit": "",
     "shell": "切換 shell",
     "switchView": "切換顯示方式",
     "toggleSidebar": "切換側邊欄",
     "update": "更新",
-    "upload": "上傳"
+    "upload": "上傳",
+    "sharedCode": "",
+    "optionalSharedCode": "",
+    "favorite": ""
   },
   "download": {
     "downloadFile": "下載檔案",
@@ -141,7 +145,12 @@
     "show": "顯示",
     "size": "大小",
     "upload": "上傳",
-    "uploadMessage": "選擇上傳項。"
+    "uploadMessage": "選擇上傳項。",
+    "downloadPrompts": "",
+    "downloadPromptsWithSharedCode": "",
+    "invalidSharedCode": "",
+    "favorite": "",
+    "favoriteMessage": ""
   },
   "search": {
     "images": "影像",

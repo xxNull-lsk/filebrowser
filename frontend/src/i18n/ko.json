@@ -28,11 +28,15 @@
     "select": "선택",
     "selectMultiple": "다중 선택",
     "share": "공유",
+    "submit": "",
     "shell": "쉘 전환",
     "switchView": "보기 전환",
     "toggleSidebar": "사이드바 전환",
     "update": "업데이트",
-    "upload": "업로드"
+    "upload": "업로드",
+    "sharedCode": "",
+    "optionalSharedCode": "",
+    "favorite": ""
   },
   "download": {
     "downloadFile": "파일 다운로드",
@@ -141,7 +145,12 @@
     "show": "보기",
     "size": "크기",
     "upload": "",
-    "uploadMessage": ""
+    "uploadMessage": "",
+    "downloadPrompts": "",
+    "downloadPromptsWithSharedCode": "",
+    "invalidSharedCode": "",
+    "favorite": "",
+    "favoriteMessage": ""
   },
   "search": {
     "images": "이미지",
@@ -226,7 +235,9 @@
     "userManagement": "사용자 관리",
     "userUpdated": "사용자 수정됨!",
     "username": "사용자 이름",
-    "users": "사용자"
+    "users": "사용자",
+    "accessCount": "",
+    "downloadCount": ""
   },
   "sidebar": {
     "help": "도움말",
@@ -239,7 +250,9 @@
     "preview": "미리보기",
     "settings": "설정",
     "signup": "가입하기",
-    "siteSettings": "사이트 설정"
+    "siteSettings": "사이트 설정",
+    "myShares": "",
+    "favorite": ""
   },
   "success": {
     "linkCopied": "링크가 복사되었습니다!"

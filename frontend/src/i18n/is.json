@@ -28,11 +28,15 @@
     "select": "Velja",
     "selectMultiple": "Velja mörg",
     "share": "Deila",
+    "submit": "",
     "shell": "Sýna skipanaglugga",
     "switchView": "Skipta um útlit",
     "toggleSidebar": "Sýna hliðarstiku",
     "update": "Vista",
-    "upload": "Hlaða upp"
+    "upload": "Hlaða upp",
+    "sharedCode": "",
+    "optionalSharedCode": "",
+    "favorite": ""
   },
   "download": {
     "downloadFile": "Sækja skjal",
@@ -141,7 +145,12 @@
     "show": "Sýna",
     "size": "Stærð",
     "upload": "",
-    "uploadMessage": ""
+    "uploadMessage": "",
+    "downloadPrompts": "",
+    "downloadPromptsWithSharedCode": "",
+    "invalidSharedCode": "",
+    "favorite": "",
+    "favoriteMessage": ""
   },
   "search": {
     "images": "Myndir",
@@ -226,7 +235,9 @@
     "userManagement": "Notendastýring",
     "userUpdated": "Notandastillingar vistaðar!",
     "username": "Notendanafn",
-    "users": "Notendur"
+    "users": "Notendur",
+    "accessCount": "",
+    "downloadCount": ""
   },
   "sidebar": {
     "help": "Hjálp",
@@ -239,7 +250,9 @@
     "preview": "Sýnishorn",
     "settings": "Stillingar",
     "signup": "Nýskráning",
-    "siteSettings": "Stillingar síðu"
+    "siteSettings": "Stillingar síðu",
+    "myShares": "",
+    "favorite": ""
   },
   "success": {
     "linkCopied": "Hlekkur afritaður!"

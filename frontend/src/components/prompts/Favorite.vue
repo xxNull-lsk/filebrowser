@@ -51,30 +51,23 @@ export default {
         path = this.req.url
       }
       path = path.replace(/\/$/g, '')
-      this.path = path
-      var items = path.split('/')
+      path = path.replace(/^.files/g, '')
+      this.path = decodeURIComponent(path)
+      var items = this.path.split('/')
       if (items.length > 0) {
         this.name = items[items.length - 1]
       }
   },
   methods: {
     submit: async function() {
-      let path = ''
-
-      if (this.selected != undefined && this.selected.length > 0) {
-        path = this.req.items[this.selected[0]].url
-      } else {
-        path = this.req.url
-      }
-
       try {
-        path = path.replace(/^.files/g, '')
-        await favorite_api.create(path, this.name)
+        await favorite_api.create(this.path, this.name)
       } catch (e) {
         console.error(e)
         //this.$showError(e)
       }
 
+      this.$root.$emit('favorite-created')
       this.$store.commit('closeHovers')
     }
   }

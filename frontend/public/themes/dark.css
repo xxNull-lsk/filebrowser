@@ -61,8 +61,11 @@ header {
 .favorite i {
   color: var(--icon) !important;
 }
-.favorite .counter {
+.favorite .delete {
   border-color: var(--surfacePrimary);
+}
+.favorite_title {
+  color: var(--textPrimary);
 }
 
 .action {
