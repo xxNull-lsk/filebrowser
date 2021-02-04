@@ -28,11 +28,15 @@
     "select": "Selecteren",
     "selectMultiple": "Meerdere selecteren",
     "share": "Delen",
+    "submit": "",
     "shell": "Open shell",
     "switchView": "Beeld wisselen",
     "toggleSidebar": "Zijbalk tonen",
     "update": "Updaten",
-    "upload": "Uploaden"
+    "upload": "Uploaden",
+    "sharedCode": "",
+    "optionalSharedCode": "",
+    "favorite": ""
   },
   "download": {
     "downloadFile": "Bestand downloaden",
@@ -141,7 +145,12 @@
     "show": "Tonen",
     "size": "Grootte",
     "upload": "",
-    "uploadMessage": ""
+    "uploadMessage": "",
+    "downloadPrompts": "",
+    "downloadPromptsWithSharedCode": "",
+    "invalidSharedCode": "",
+    "favorite": "",
+    "favoriteMessage": ""
   },
   "search": {
     "images": "Afbeeldingen",
@@ -226,7 +235,9 @@
     "userManagement": "Gebruikersbeheer",
     "userUpdated": "Gebruiker bijgewerkt!",
     "username": "Gebruikersnaam",
-    "users": "Gebruikers"
+    "users": "Gebruikers",
+    "accessCount": "",
+    "downloadCount": ""
   },
   "sidebar": {
     "help": "Help",
@@ -239,7 +250,9 @@
     "preview": "Voorbeeld",
     "settings": "Instellingen",
     "signup": "Registeren",
-    "siteSettings": "Site-instellingen"
+    "siteSettings": "Site-instellingen",
+    "myShares": "",
+    "favorite": ""
   },
   "success": {
     "linkCopied": "Link gekopieerd!"

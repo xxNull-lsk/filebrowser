@@ -14,6 +14,7 @@ debugInfo () {
   echo "Build assets:   $ASSETS"
   echo "Build binary:   $BINARY"
   echo "Release:        $RELEASE"
+  echo "Version:        $VERSION"
 }
 
 buildAssets () {
@@ -26,7 +27,7 @@ buildAssets () {
   if [ "$CI" = "true" ]; then
     npm ci
   else
-    npm install
+    cnpm install
   fi
 
   npm run lint
@@ -62,14 +63,13 @@ release () {
     echo "❌ This release script requires a single argument corresponding to the semver to be released. See semver.org"
     exit 1
   fi
-echo "1"
+  
   GREP="grep"
   if [ -x "$(command -v ggrep)" ]; then
     GREP="ggrep"
   fi
   semver=$(echo "$1" | $GREP -P "^v(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)")
-err=$?
-  if [ $err -ne 0 ]; then
+  if [ $? -ne 0 ]; then
     echo "❌ Not valid semver format. See semver.org"
     exit 1
   fi
@@ -151,6 +151,6 @@ if [ "$RELEASE" != "" ]; then
   release $RELEASE
 fi
 
-if [ "$DOCKER_IMAGE" != "" ]; then
+if [ "$DOCKER_IMAGE" = "true" ]; then
   buildDockerImage
 fi

@@ -28,11 +28,15 @@
     "select": "Sélectionner",
     "selectMultiple": "Sélection multiple",
     "share": "Partager",
+    "submit": "",
     "shell": "Toggle shell",
     "switchView": "Changer le mode d'affichage",
     "toggleSidebar": "Afficher/Masquer la barre latérale",
     "update": "Mettre à jour",
-    "upload": "Importer"
+    "upload": "Importer",
+    "sharedCode": "",
+    "optionalSharedCode": "",
+    "favorite": ""
   },
   "download": {
     "downloadFile": "Download File",
@@ -141,7 +145,12 @@
     "show": "Montrer",
     "size": "Taille",
     "upload": "",
-    "uploadMessage": ""
+    "uploadMessage": "",
+    "downloadPrompts": "",
+    "downloadPromptsWithSharedCode": "",
+    "invalidSharedCode": "",
+    "favorite": "",
+    "favoriteMessage": ""
   },
   "search": {
     "images": "Images",
@@ -226,7 +235,9 @@
     "userManagement": "Gestion des utilisateurs",
     "userUpdated": "Utilisateur mis à jour !",
     "username": "Nom d'utilisateur",
-    "users": "Utilisateurs"
+    "users": "Utilisateurs",
+    "accessCount": "",
+    "downloadCount": ""
   },
   "sidebar": {
     "help": "Aide",
@@ -239,7 +250,9 @@
     "preview": "Prévisualiser",
     "settings": "Paramètres",
     "signup": "Signup",
-    "siteSettings": "Paramètres du site"
+    "siteSettings": "Paramètres du site",
+    "myShares": "My Shares",
+    "favorite": "Favorite"
   },
   "success": {
     "linkCopied": "Link copied!"

@@ -28,11 +28,15 @@
     "select": "Selectează",
     "selectMultiple": "Selecție multiplă",
     "share": "Distribuie",
+    "submit": "",
     "shell": "Comută linia de comandă",
     "switchView": "Schimba vizualizarea",
     "toggleSidebar": "Comută bara laterală",
     "update": "Actualizează",
-    "upload": "Încarcă"
+    "upload": "Încarcă",
+    "sharedCode": "",
+    "optionalSharedCode": "",
+    "favorite": ""
   },
   "download": {
     "downloadFile": "Descarcă fișier",
@@ -141,7 +145,12 @@
     "show": "Arată",
     "size": "Dimensiune",
     "upload": "",
-    "uploadMessage": ""
+    "uploadMessage": "",
+    "downloadPrompts": "",
+    "downloadPromptsWithSharedCode": "",
+    "invalidSharedCode": "",
+    "favorite": "",
+    "favoriteMessage": ""
   },
   "search": {
     "images": "Imagini",
@@ -226,7 +235,9 @@
     "userManagement": "Gestionare utilizatori",
     "userUpdated": "Utilizator actualizat!",
     "username": "Utilizator",
-    "users": "Utilizatori"
+    "users": "Utilizatori",
+    "accessCount": "",
+    "downloadCount": ""
   },
   "sidebar": {
     "help": "Ajutor",
@@ -239,7 +250,9 @@
     "preview": "Previzualizare",
     "settings": "Setări",
     "signup": "Înregistrare",
-    "siteSettings": "Setări site"
+    "siteSettings": "Setări site",
+    "myShares": "",
+    "favorite": ""
   },
   "success": {
     "linkCopied": "Legătură copiată!"

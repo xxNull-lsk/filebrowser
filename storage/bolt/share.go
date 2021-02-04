@@ -1,8 +1,6 @@
 package bolt
 
 import (
-	"fmt"
-
 	"github.com/asdine/storm"
 	"github.com/asdine/storm/q"
 
@@ -80,16 +78,16 @@ func (s shareBackend) IncAccessCount(hash string) error {
 	var v []*share.Link
 	err := s.db.Select(q.Eq("Hash", hash)).Find(&v)
 	if err == storm.ErrNotFound || len(v) == 0 {
-		fmt.Printf("IncAccessCount: hash: %s not found", hash)
 		return nil
 	}
 
 	for _, l := range v {
-		s.db.UpdateField(l, "AccessCount", l.AccessCount+1)
+		err = s.db.UpdateField(l, "AccessCount", l.AccessCount+1)
+		if err != nil {
+			return err
+		}
 	}
-	s.db.Commit()
-
-	return err
+	return s.db.Commit()
 }
 
 func (s shareBackend) IncDownloadCount(hash string) error {
@@ -100,9 +98,11 @@ func (s shareBackend) IncDownloadCount(hash string) error {
 	}
 
 	for _, l := range v {
-		s.db.UpdateField(l, "DownloadCount", l.DownloadCount+1)
+		err = s.db.UpdateField(l, "DownloadCount", l.DownloadCount+1)
+		if err != nil {
+			return err
+		}
 	}
-	s.db.Commit()
-
-	return err
+	return s.db.Commit()
 }
+

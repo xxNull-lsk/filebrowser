@@ -4,7 +4,8 @@
       <button @click="openSidebar" :aria-label="$t('buttons.toggleSidebar')" :title="$t('buttons.toggleSidebar')" class="action">
         <i class="material-icons">menu</i>
       </button>
-      <img :src="logoURL" :alt="name"><span class="name">{{ name }}</span>
+      <img :src="logoURL" :alt="name">
+      <span>{{ name }}</span>
       <search v-if="isLogged"></search>
     </div>
     <div>
@@ -37,6 +38,9 @@
             <delete-button v-show="showDeleteButton"></delete-button>
           </div>
 
+          <new-file-button v-show="showNewFileButton"/>
+          <new-dir-button v-show="showNewDirButton"/>
+          <favorite-button/>
           <shell-button v-if="isExecEnabled && !isSharing && user.perm.execute" />
           <switch-button v-show="isListing"></switch-button>
           <download-button v-show="showDownloadButton"></download-button>
@@ -67,6 +71,9 @@ import MoveButton from './buttons/Move'
 import CopyButton from './buttons/Copy'
 import ShareButton from './buttons/Share'
 import ShellButton from './buttons/Shell'
+import NewFileButton from './buttons/NewFile'
+import NewDirButton from './buttons/NewDir'
+import FavoriteButton from './buttons/Favorite'
 import {mapGetters, mapState} from 'vuex'
 import { name, logoURL, enableExec } from '@/utils/constants'
 import * as api from '@/api'
@@ -85,7 +92,10 @@ export default {
     UploadButton,
     SwitchButton,
     MoveButton,
-    ShellButton
+    ShellButton,
+    NewFileButton,
+    NewDirButton,
+    FavoriteButton
   },
   data: function () {
     return {
@@ -155,6 +165,16 @@ export default {
     showCopyButton () {
       return this.isFiles && (this.isListing
         ? (this.selectedCount > 0 && this.user.perm.create)
+        : this.user.perm.create)
+    },
+    showNewFileButton () {
+      return this.isFiles && (this.isListing
+        ? (this.selectedCount === 0 && this.user.perm.create)
+        : this.user.perm.create)
+    },
+    showNewDirButton () {
+      return this.isFiles && (this.isListing
+        ? (this.selectedCount === 0 && this.user.perm.create)
         : this.user.perm.create)
     },
     showMore () {

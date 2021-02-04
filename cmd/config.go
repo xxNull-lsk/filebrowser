@@ -135,6 +135,8 @@ func printSettings(ser *settings.Server, set *settings.Settings, auther auth.Aut
 	fmt.Fprintf(w, "\tLog:\t%s\n", ser.Log)
 	fmt.Fprintf(w, "\tPort:\t%s\n", ser.Port)
 	fmt.Fprintf(w, "\tBase URL:\t%s\n", ser.BaseURL)
+	fmt.Fprintf(w, "\tExtern preview URL:\t%s\n", ser.ExternPreviewURL)
+	fmt.Fprintf(w, "\tBind URL:\t%s\n", ser.BindURL)
 	fmt.Fprintf(w, "\tRoot:\t%s\n", ser.Root)
 	fmt.Fprintf(w, "\tSocket:\t%s\n", ser.Socket)
 	fmt.Fprintf(w, "\tAddress:\t%s\n", ser.Address)
