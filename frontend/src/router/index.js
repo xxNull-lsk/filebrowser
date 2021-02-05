@@ -14,7 +14,7 @@ import Error403 from '@/views/errors/403'
 import Error404 from '@/views/errors/404'
 import Error500 from '@/views/errors/500'
 import store from '@/store'
-import { baseURL } from '@/utils/constants'
+import { baseURL, name } from '@/utils/constants'
 
 Vue.use(Router)
 
@@ -31,7 +31,6 @@ const router = new Router({
           return next({ path: '/files' })
         }
 
-        document.title = 'Login'
         next()
       }
     },
@@ -130,7 +129,7 @@ const router = new Router({
 })
 
 router.beforeEach((to, from, next) => {
-  document.title = to.name
+  document.title = name + " - " + to.name
 
   if (to.matched.some(record => record.meta.requiresAuth)) {
     if (!store.getters.isLogged) {

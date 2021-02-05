@@ -19,13 +19,12 @@
 
 <script>
 import * as auth from '@/utils/auth'
-import { name, logoURL, recaptcha, recaptchaKey, signup } from '@/utils/constants'
+import { logoURL, recaptcha, recaptchaKey, signup } from '@/utils/constants'
 
 export default {
   name: 'login',
   computed: {
     signup: () => signup,
-    name: () => name,
     logoURL: () => logoURL
   },
   data: function () {
