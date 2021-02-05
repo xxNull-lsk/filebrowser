@@ -1,9 +1,10 @@
 FROM debian:buster
 
 VOLUME /srv
-EXPOSE 80
+EXPOSE 8080
 
 COPY .docker.json /.filebrowser.json
 COPY filebrowser /filebrowser
 USER 1000:1000
+
 ENTRYPOINT [ "/filebrowser" ]
