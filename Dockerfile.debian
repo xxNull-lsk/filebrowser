@@ -5,5 +5,5 @@ EXPOSE 80
 
 COPY .docker.json /.filebrowser.json
 COPY filebrowser /filebrowser
-
+USER 1000:1000
 ENTRYPOINT [ "/filebrowser" ]
