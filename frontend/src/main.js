@@ -6,6 +6,7 @@ import Vue from 'vue'
 import { recaptcha, loginPage } from '@/utils/constants'
 import { login, validateLogin } from '@/utils/auth'
 import App from '@/App'
+import 'font-awesome/css/font-awesome.min.css'
 
 sync(store, router)
 

@@ -225,6 +225,7 @@
     "shareManagement": "Share Management",
     "singleClick": "Use single clicks to open files and directories",
     "themes": {
+      "color": "Color",
       "dark": "Dark",
       "light": "Light",
       "title": "Theme"

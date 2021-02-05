@@ -2,6 +2,7 @@
   <select v-on:change="change" :value="theme">
     <option value="">{{ $t('settings.themes.light') }}</option>
     <option value="dark">{{ $t('settings.themes.dark') }}</option>
+    <option value="color">{{ $t('settings.themes.color') }}</option>
   </select>
 </template>
 

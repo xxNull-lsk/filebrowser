@@ -16,14 +16,15 @@
       <lazy-component v-if="type==='image' && isThumbsEnabled && !isSharing" :timeout="1000">
         <img :src="thumbnailUrl">
       </lazy-component>
-      <i v-else class="material-icons">{{ icon }}</i>
+      <i v-else-if="use_material_icons" class="material-icons">{{ icon }}</i>
+      <i v-else :class="icon"></i>
     </div>
 
     <div>
       <p class="name">{{ name }}</p>
 
-      <p v-if="isDir" class="size" data-order="-1">&mdash;</p>
-      <p v-else class="size" :data-order="humanSize()">{{ humanSize() }}</p>
+      <p v-if="isDir" class="size" data-order="-1"></p>
+      <p v-else :data-order="humanSize()">{{ humanSize() }}</p>
 
       <p class="modified">
         <time :datetime="modified">{{ humanTime() }}</time>
@@ -44,10 +45,76 @@ export default {
   name: 'item',
   data: function () {
     return {
-      touches: 0
+      touches: 0,
+      use_material_icons: true,
+      icon: ''
     }
   },
   props: ['name', 'isDir', 'url', 'type', 'size', 'modified', 'index'],
+  mounted () {
+      if (this.isDir){
+        this.use_material_icons = false
+        this.icon = 'fa fa-folder-o'
+        return
+      }
+
+      var items = this.name.split('.')
+      var ext_name = items[items.length - 1].toLowerCase()
+      if (ext_name === 'apk'){
+        this.use_material_icons = false
+        this.icon = 'fa fa-android'
+      } 
+      else if (ext_name === 'txt' || ext_name === 'log'
+              || ext_name === "json" || ext_name === "yml"){
+        this.use_material_icons = false
+        this.icon = 'fa fa-file-text-o'
+      } 
+      else if (ext_name === 'doc' || ext_name === 'docx'){
+        this.use_material_icons = false
+        this.icon = 'fa fa-file-word-o'
+      } 
+      else if (ext_name === 'xls' || ext_name === 'xlsx'){
+        this.use_material_icons = false
+        this.icon = 'fa fa-file-excel-o'
+      } 
+      else if (ext_name === 'ppt' || ext_name === 'pptx'){
+        this.use_material_icons = false
+        this.icon = 'fa fa-file-powerpoint-o'
+      } 
+      else if (ext_name === 'pdf'){
+        this.use_material_icons = false
+        this.icon = 'fa fa-file-pdf-o'
+      } 
+      else if (ext_name === 'zip' || ext_name == "rar" || ext_name == "7z" || ext_name == "gz" || ext_name == "tar"){
+        this.use_material_icons = false
+        this.icon = 'fa fa-file-zip-o'
+      }
+      else if (ext_name === 'c' || ext_name == "cpp"
+              || ext_name == "h" || ext_name == "hpp"
+              || ext_name == "py" || ext_name == "php"
+              || ext_name == "js" || ext_name == "java"
+              || ext_name == "html" || ext_name == "xml"
+              || ext_name == "sh" || ext_name == "css"
+              || ext_name == "vue" || ext_name == "md"){
+        this.use_material_icons = false
+        this.icon = 'fa fa-file-code-o'
+      }
+      else if (this.type === 'image'){
+        this.use_material_icons = false
+        this.icon = 'fa fa-file-photo-o'
+      }
+      else if (this.type === 'audio'){
+        this.use_material_icons = false
+        this.icon = 'fa fa-file-sound-o'
+      }
+      else if (this.type === 'video'){
+        this.use_material_icons = false
+        this.icon = 'fa fa-file-video-o'
+      } else {
+      this.use_material_icons = false
+      this.icon = 'fa fa-file-o'
+      }
+  },
   computed: {
     ...mapState(['user', 'selected', 'req', 'jwt']),
     ...mapGetters(['selectedCount', 'isSharing']),
@@ -57,13 +124,6 @@ export default {
     },
     isSelected () {
       return (this.selected.indexOf(this.index) !== -1)
-    },
-    icon () {
-      if (this.isDir) return 'folder'
-      if (this.type === 'image') return 'insert_photo'
-      if (this.type === 'audio') return 'volume_up'
-      if (this.type === 'video') return 'movie'
-      return 'insert_drive_file'
     },
     isDraggable () {
       return !this.isSharing && this.user.perm.rename

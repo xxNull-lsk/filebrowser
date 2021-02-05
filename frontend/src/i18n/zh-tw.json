@@ -222,6 +222,7 @@
     "shareManagement": "",
     "singleClick": "",
     "themes": {
+      "color": "",
       "dark": "深色",
       "light": "淺色",
       "title": "主題"
