@@ -34,6 +34,7 @@ import InternalError from './errors/500'
 import Preview from '@/components/files/Preview'
 import Listing from '@/components/files/Listing'
 import { files as api } from '@/api'
+import { name } from '@/utils/constants'
 import { mapGetters, mapState, mapMutations } from 'vuex'
 
 function clean (path) {
@@ -65,6 +66,7 @@ export default {
       'loading',
       'show'
     ]),
+    name: () => name,
     isPreview () {
       return !this.loading && !this.isListing && !this.isEditor || this.loading && this.$store.state.previewMode
     },
@@ -154,7 +156,12 @@ export default {
         }
 
         this.$store.commit('updateRequest', res)
-        document.title = res.name
+        if (url == '/files/') {
+          document.title = this.name + " - " + this.$t("files.home")
+        }
+        else{
+          document.title = this.name + " - " + res.name
+        }
       } catch (e) {
         this.error = e
       } finally {

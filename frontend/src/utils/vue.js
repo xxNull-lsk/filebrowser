@@ -1,10 +1,12 @@
 import Vue from 'vue'
 import Noty from 'noty'
-import VueLazyload from 'vue-lazyload'
 import i18n from '@/i18n'
+import VueLazyload from 'vue-lazyload'
 import { disableExternal } from '@/utils/constants'
 
-Vue.use(VueLazyload)
+Vue.use(VueLazyload, {
+  lazyComponent: true
+})
 
 Vue.config.productionTip = true
 

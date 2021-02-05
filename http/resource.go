@@ -108,8 +108,7 @@ var resourcePostPutHandler = withUser(func(w http.ResponseWriter, r *http.Reques
 		if r.Method == http.MethodPut {
 			return http.StatusMethodNotAllowed, nil
 		}
-
-		err := d.user.Fs.MkdirAll(r.URL.Path, 0775)
+		err := d.user.Fs.MkdirAll(r.URL.Path, 0777)
 		return errToStatus(err), err
 	}
 
@@ -126,12 +125,12 @@ var resourcePostPutHandler = withUser(func(w http.ResponseWriter, r *http.Reques
 
 	err := d.RunHook(func() error {
 		dir, _ := path.Split(r.URL.Path)
-		err := d.user.Fs.MkdirAll(dir, 0775)
+		err := d.user.Fs.MkdirAll(dir, 0777)
 		if err != nil {
 			return err
 		}
 
-		file, err := d.user.Fs.OpenFile(r.URL.Path, os.O_RDWR|os.O_CREATE|os.O_TRUNC, 0775)
+		file, err := d.user.Fs.OpenFile(r.URL.Path, os.O_RDWR|os.O_CREATE|os.O_TRUNC, 0777)
 		if err != nil {
 			return err
 		}

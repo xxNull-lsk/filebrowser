@@ -5,7 +5,7 @@
         <i class="material-icons">menu</i>
       </button>
       <img :src="logoURL" :alt="name">
-      <span>{{ name }}</span>
+      <span class="logoName">{{ name }}</span>
       <search v-if="isLogged"></search>
     </div>
     <div>
@@ -40,7 +40,7 @@
 
           <new-file-button v-show="showNewFileButton"/>
           <new-dir-button v-show="showNewDirButton"/>
-          <favorite-button/>
+          <favorite-button v-show="showFavoriteButton"/>
           <shell-button v-if="isExecEnabled && !isSharing && user.perm.execute" />
           <switch-button v-show="isListing"></switch-button>
           <download-button v-show="showDownloadButton"></download-button>
@@ -176,6 +176,9 @@ export default {
       return this.isFiles && (this.isListing
         ? (this.selectedCount === 0 && this.user.perm.create)
         : this.user.perm.create)
+    },
+    showFavoriteButton () {
+      return this.isFiles
     },
     showMore () {
       return (this.isFiles || this.isSharing) && this.$store.state.show === 'more'

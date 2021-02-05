@@ -13,7 +13,9 @@
   :aria-label="name"
   :aria-selected="isSelected">
     <div>
-      <img v-if="type==='image' && isThumbsEnabled && !isSharing" v-lazy="thumbnailUrl">
+      <lazy-component v-if="type==='image' && isThumbsEnabled && !isSharing" :timeout="1000">
+        <img :src="thumbnailUrl">
+      </lazy-component>
       <i v-else class="material-icons">{{ icon }}</i>
     </div>
 
