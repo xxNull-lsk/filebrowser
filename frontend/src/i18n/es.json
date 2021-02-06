@@ -36,7 +36,9 @@
     "upload": "Subir",
     "sharedCode": "",
     "optionalSharedCode": "",
-    "favorite": ""
+    "favorite": "",
+    "restore": "",
+    "forceDelete": ""
   },
   "download": {
     "downloadFile": "Descargar fichero",
@@ -150,7 +152,15 @@
     "downloadPromptsWithSharedCode": "",
     "invalidSharedCode": "",
     "favorite": "",
-    "favoriteMessage": ""
+    "favoriteMessage": "",
+    "deleteToTrashMessageMultiple": "",
+    "deleteToTrashMessageSingle": "",
+    "restoreMessageMultiple": "",
+    "restoreMessageSingle": "",
+    "restoreFailedBecauseFileExist": "",
+    "originPath": "",
+    "deleteOperator": "",
+    "deleteDate": ""
   },
   "search": {
     "images": "Images",
@@ -252,8 +262,9 @@
     "settings": "Ajustes",
     "signup": "Registrate",
     "siteSettings": "Ajustes del sitio",
-    "myShares": "My Shares",
-    "favorite": "Favorite"
+    "myShares": "",
+    "favorite": "",
+    "trash": ""
   },
   "success": {
     "linkCopied": "¡Link copiado!"

@@ -26,6 +26,7 @@
           <copy-button v-show="showCopyButton"></copy-button>
           <move-button v-show="showMoveButton"></move-button>
           <delete-button v-show="showDeleteButton"></delete-button>
+          <restore-button v-show="isTrash"></restore-button>
         </div>
 
         <!-- This buttons are shown on a dropdown on mobile phones -->
@@ -36,12 +37,13 @@
             <copy-button v-show="showCopyButton"></copy-button>
             <move-button v-show="showMoveButton"></move-button>
             <delete-button v-show="showDeleteButton"></delete-button>
+            <restore-button v-show="isTrash"></restore-button>
           </div>
 
           <new-file-button v-show="showNewFileButton"/>
           <new-dir-button v-show="showNewDirButton"/>
           <favorite-button v-show="showFavoriteButton"/>
-          <shell-button v-if="isExecEnabled && !isSharing && user.perm.execute" />
+          <shell-button v-if="isExecEnabled && !isSharing && !isTrash && user.perm.execute" />
           <switch-button v-show="isListing"></switch-button>
           <download-button v-show="showDownloadButton"></download-button>
           <upload-button v-show="showUpload"></upload-button>
@@ -74,6 +76,7 @@ import ShellButton from './buttons/Shell'
 import NewFileButton from './buttons/NewFile'
 import NewDirButton from './buttons/NewDir'
 import FavoriteButton from './buttons/Favorite'
+import RestoreButton from './buttons/Restore'
 import {mapGetters, mapState} from 'vuex'
 import { name, logoURL, enableExec } from '@/utils/constants'
 import * as api from '@/api'
@@ -95,7 +98,8 @@ export default {
     ShellButton,
     NewFileButton,
     NewDirButton,
-    FavoriteButton
+    FavoriteButton,
+    RestoreButton
   },
   data: function () {
     return {
@@ -117,6 +121,7 @@ export default {
     ...mapGetters([
       'selectedCount',
       'isFiles',
+      'isTrash',
       'isEditor',
       'isPreview',
       'isListing',
@@ -137,10 +142,10 @@ export default {
       return this.width <= 736
     },
     showUpload () {
-      return this.isListing && this.user.perm.create
+      return !this.isTrash && this.isListing && this.user.perm.create
     },
     showDownloadButton () {
-      return (this.isFiles && this.user.perm.download) || (this.isSharing && this.selectedCount > 0)
+      return (!this.isTrash && this.isFiles && this.user.perm.download) || (this.isSharing && this.selectedCount > 0)
     },
     showDeleteButton () {
       return this.isFiles && (this.isListing
@@ -148,40 +153,40 @@ export default {
         : this.user.perm.delete)
     },
     showRenameButton () {
-      return this.isFiles && (this.isListing
+      return !this.isTrash && this.isFiles && (this.isListing
         ? (this.selectedCount === 1 && this.user.perm.rename)
         : this.user.perm.rename)
     },
     showShareButton () {
-      return this.isFiles && (this.isListing
+      return !this.isTrash && this.isFiles && (this.isListing
         ? (this.selectedCount === 1 && this.user.perm.share)
         : this.user.perm.share)
     },
     showMoveButton () {
-      return this.isFiles && (this.isListing
+      return !this.isTrash && this.isFiles && (this.isListing
         ? (this.selectedCount > 0 && this.user.perm.rename)
         : this.user.perm.rename)
     },
     showCopyButton () {
-      return this.isFiles && (this.isListing
+      return !this.isTrash && this.isFiles && (this.isListing
         ? (this.selectedCount > 0 && this.user.perm.create)
         : this.user.perm.create)
     },
     showNewFileButton () {
-      return this.isFiles && (this.isListing
+      return !this.isTrash && this.isFiles && (this.isListing
         ? (this.selectedCount === 0 && this.user.perm.create)
         : this.user.perm.create)
     },
     showNewDirButton () {
-      return this.isFiles && (this.isListing
+      return !this.isTrash && this.isFiles && (this.isListing
         ? (this.selectedCount === 0 && this.user.perm.create)
         : this.user.perm.create)
     },
     showFavoriteButton () {
-      return this.isFiles
+      return !this.isTrash && this.isFiles
     },
     showMore () {
-      return (this.isFiles || this.isSharing) && this.$store.state.show === 'more'
+      return (!this.isTrash && this.isFiles || this.isSharing) && this.$store.state.show === 'more'
     },
     showOverlay () {
       return this.showMore

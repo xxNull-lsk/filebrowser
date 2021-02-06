@@ -1,6 +1,8 @@
 package http
 
 import (
+	"crypto/rand"
+	"encoding/base64"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -10,15 +12,30 @@ import (
 	"path"
 	"path/filepath"
 	"strings"
+	"time"
 
 	"github.com/spf13/afero"
 
 	"github.com/filebrowser/filebrowser/v2/errors"
 	"github.com/filebrowser/filebrowser/v2/files"
 	"github.com/filebrowser/filebrowser/v2/fileutils"
+	"github.com/filebrowser/filebrowser/v2/rules"
+	"github.com/filebrowser/filebrowser/v2/trash"
 )
 
+func IsTrash(r *http.Request) bool {
+	return strings.TrimRight(r.URL.Path, "/") == "/.trash"
+}
+
 var resourceGetHandler = withUser(func(w http.ResponseWriter, r *http.Request, d *data) (int, error) {
+	isTrash := IsTrash(r)
+	if isTrash && !files.Exist(d.user.Fs, r.URL.Path) {
+		err := d.user.Fs.Mkdir("/.trash", 0777)
+		if err != nil {
+			return errToStatus(err), err
+		}
+	}
+
 	file, err := files.NewFileInfo(files.FileOptions{
 		Fs:         d.user.Fs,
 		Path:       r.URL.Path,
@@ -28,10 +45,46 @@ var resourceGetHandler = withUser(func(w http.ResponseWriter, r *http.Request, d
 		Checker:    d,
 	})
 	if err != nil {
+		fmt.Println(err)
 		return errToStatus(err), err
 	}
 
 	if file.IsDir {
+		if d.user.HideDotfiles && !isTrash {
+			count := len(file.Listing.Items)
+			for i := range file.Listing.Items {
+				index := count - i - 1
+				item := file.Listing.Items[index]
+				if rules.MatchHidden(item.Path) {
+					file.Listing.Items = append(file.Listing.Items[:index], file.Listing.Items[index+1:]...)
+					if item.IsDir {
+						file.Listing.NumDirs--
+					} else {
+						file.Listing.NumFiles--
+					}
+				}
+			}
+		}
+		if isTrash {
+			count := len(file.Listing.Items)
+			for i := range file.Listing.Items {
+				index := count - i - 1
+				item := file.Listing.Items[index]
+				t, err := d.store.Trash.GetByHash(item.Name)
+				if err != nil || t.UserID != d.user.ID && !d.user.Perm.Admin {
+					file.Listing.Items = append(file.Listing.Items[:index], file.Listing.Items[index+1:]...)
+					continue
+				}
+
+				item.Name = filepath.Base(t.OriginPath)
+				item.OriginPath = t.OriginPath
+				item.DeleteTime = time.Unix(t.Datetime, 0)
+				user, err := d.store.Users.Get("", t.UserID)
+				if err == nil {
+					item.Username = user.Username
+				}
+			}
+		}
 		file.Listing.Sorting = d.user.Sorting
 		file.Listing.ApplySort()
 		return renderJSON(w, r, file)
@@ -52,6 +105,79 @@ var resourceGetHandler = withUser(func(w http.ResponseWriter, r *http.Request, d
 	return renderJSON(w, r, file)
 })
 
+func resourceTrashHandler(file *files.FileInfo, w http.ResponseWriter, r *http.Request, d *data) (int, error) {
+
+	bytes := make([]byte, 6)
+	_, err := rand.Read(bytes)
+	if err != nil {
+		return http.StatusInternalServerError, err
+	}
+	hash := base64.URLEncoding.EncodeToString(bytes)
+
+	dst := "/.trash/" + hash
+	if !files.Exist(d.user.Fs, "/.trash") {
+		err = d.user.Fs.Mkdir("/.trash", 0777)
+		if err != nil {
+			return errToStatus(err), err
+		}
+	}
+
+	s := &trash.Trash{
+		Hash:       hash,
+		OriginPath: file.Path,
+		TrashPath:  dst,
+		UserID:     d.user.ID,
+		Datetime:   time.Now().Unix(),
+	}
+	err = d.store.Trash.Save(s)
+	if err != nil {
+		return errToStatus(err), err
+	}
+
+	err = fileutils.MoveFile(d.user.Fs, file.Path, dst)
+	if err != nil {
+		return errToStatus(err), err
+	}
+
+	return http.StatusOK, nil
+}
+
+var trashDeleteHandler = withUser(func(w http.ResponseWriter, r *http.Request, d *data) (int, error) {
+	if r.URL.Path == "/" || !d.user.Perm.Delete {
+		return http.StatusForbidden, nil
+	}
+	pathElements := strings.Split(r.URL.Path, "/")
+	if len(pathElements) == 0 {
+		return http.StatusForbidden, nil
+	}
+	hash := pathElements[len(pathElements)-1]
+	if hash == "" {
+		return http.StatusBadRequest, os.ErrInvalid
+	}
+
+	s, err := d.store.Trash.GetByHash(hash)
+	if err != nil {
+		return errToStatus(err), err
+	}
+
+	_, err = d.user.Fs.Stat(s.OriginPath)
+	if err == nil {
+		// if s.OriginPath is exist file/folder, can't restore it.
+		return http.StatusFound, err
+	}
+	err = fileutils.MoveFile(d.user.Fs, s.TrashPath, s.OriginPath)
+	if err != nil {
+		return errToStatus(err), err
+	}
+
+	err = d.store.Trash.Delete(hash)
+	if err != nil {
+		return errToStatus(err), err
+	}
+
+	return http.StatusOK, nil
+})
+
 func resourceDeleteHandler(fileCache FileCache) handleFunc {
 	return withUser(func(w http.ResponseWriter, r *http.Request, d *data) (int, error) {
 		if r.URL.Path == "/" || !d.user.Perm.Delete {
@@ -68,6 +194,11 @@ func resourceDeleteHandler(fileCache FileCache) handleFunc {
 		})
 		if err != nil {
 			return errToStatus(err), err
+		}
+
+		action := r.URL.Query().Get("action")
+		if action == "trash" {
+			return resourceTrashHandler(file, w, r, d)
 		}
 
 		// delete thumbnails

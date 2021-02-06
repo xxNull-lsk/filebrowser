@@ -1,8 +1,14 @@
 <template>
   <div class="card floating">
     <div class="card-content">
-      <p v-if="req.kind !== 'listing'">{{ $t('prompts.deleteMessageSingle') }}</p>
-      <p v-else>{{ $t('prompts.deleteMessageMultiple', { count: selectedCount}) }}</p>
+      <p v-if="req.kind !== 'listing'">{{ $t(this.isTrash?'prompts.deleteMessageSingle':'prompts.deleteToTrashMessageSingle') }}</p>
+      <p v-else>{{ $t(this.isTrash?'prompts.deleteMessageMultiple':'prompts.deleteToTrashMessageMultiple', { count: selectedCount}) }}</p>
+      <p v-if="!isTrash">
+        <input type="checkbox" v-model="force_delete" />
+        <label class="checkbox-title">
+          {{  $t('buttons.forceDelete')  }}
+        </label>
+      </p>
     </div>
     <div class="card-action">
       <button @click="$store.commit('closeHovers')"
@@ -24,8 +30,13 @@ import buttons from '@/utils/buttons'
 
 export default {
   name: 'delete',
+  data: function () {
+    return {
+      force_delete: false
+    }
+  },
   computed: {
-    ...mapGetters(['isListing', 'selectedCount']),
+    ...mapGetters(['isListing', 'isTrash', 'selectedCount']),
     ...mapState(['req', 'selected'])
   },
   methods: {
@@ -35,10 +46,15 @@ export default {
 
       try {
         if (!this.isListing) {
-          await api.remove(this.$route.path)
-          buttons.success('delete')
+          if (this.isTrash || this.force_delete) {
+            await api.remove(this.$route.path)
+            buttons.success('delete')
+            this.$root.$emit('preview-deleted')
+          } else {
+            await api.trash(this.$route.path)
+            this.$root.$emit('preview-trash')
+          }
 
-          this.$root.$emit('preview-deleted')
           this.closeHovers()
           return
         }
@@ -51,7 +67,12 @@ export default {
 
         let promises = []
         for (let index of this.selected) {
-          promises.push(api.remove(this.req.items[index].url))
+          if (this.isTrash || this.force_delete){
+            promises.push(api.remove(this.req.items[index].url))
+          }
+          else {
+            promises.push(api.trash(this.req.items[index].url))
+          }
         }
 
         await Promise.all(promises)

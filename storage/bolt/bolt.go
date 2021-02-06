@@ -8,6 +8,7 @@ import (
 	"github.com/filebrowser/filebrowser/v2/settings"
 	"github.com/filebrowser/filebrowser/v2/share"
 	"github.com/filebrowser/filebrowser/v2/storage"
+	"github.com/filebrowser/filebrowser/v2/trash"
 	"github.com/filebrowser/filebrowser/v2/users"
 )
 
@@ -18,6 +19,7 @@ func NewStorage(db *storm.DB) (*storage.Storage, error) {
 	favoriteStore := favorite.NewStorage(favoriteBackend{db: db})
 	settingsStore := settings.NewStorage(settingsBackend{db: db})
 	authStore := auth.NewStorage(authBackend{db: db}, userStore)
+	trashStore := trash.NewStorage(trashBackend{db: db})
 
 	err := save(db, "version", 2)
 	if err != nil {
@@ -28,6 +30,7 @@ func NewStorage(db *storm.DB) (*storage.Storage, error) {
 		Auth:     authStore,
 		Users:    userStore,
 		Share:    shareStore,
+		Trash:    trashStore,
 		Favorite: favoriteStore,
 		Settings: settingsStore,
 	}, nil

@@ -16,11 +16,19 @@
         <p><strong>{{ $t('prompts.numberDirs') }}:</strong> {{ req.numDirs }}</p>
       </template>
 
-      <template v-if="!dir">
+      <template v-if="!dir && !isTrash">
         <p><strong>MD5: </strong><code><a @click="checksum($event, 'md5')">{{ $t('prompts.show') }}</a></code></p>
         <p><strong>SHA1: </strong><code><a @click="checksum($event, 'sha1')">{{ $t('prompts.show') }}</a></code></p>
         <p><strong>SHA256: </strong><code><a @click="checksum($event, 'sha256')">{{ $t('prompts.show') }}</a></code></p>
         <p><strong>SHA512: </strong><code><a @click="checksum($event, 'sha512')">{{ $t('prompts.show') }}</a></code></p>
+      </template>
+      <template v-else>
+        <div v-for="(sel) in selected" :key="sel" class="delete-info-group">
+          <h6 v-if="selected.length > 1">{{ req.items[sel].name }}</h6>
+          <p><strong>{{ $t('prompts.originPath') }} </strong><code>{{ req.items[sel].originPath }}</code></p>
+          <p><strong>{{ $t('prompts.deleteOperator') }} </strong><span>{{ req.items[sel].userName }}</span></p>
+          <p><strong>{{ $t('prompts.deleteDate') }} </strong><span :title="req.items[sel].deleteTime">{{ humanTime2(req.items[sel].deleteTime) }}</span></p>
+        </div>
       </template>
     </div>
 
@@ -44,7 +52,7 @@ export default {
   name: 'info',
   computed: {
     ...mapState(['req', 'selected']),
-    ...mapGetters(['selectedCount', 'isListing']),
+    ...mapGetters(['selectedCount', 'isTrash', 'isListing']),
     humanSize: function () {
       if (this.selectedCount === 0 || !this.isListing) {
         return filesize(this.req.size)
@@ -93,6 +101,9 @@ export default {
       } catch (e) {
         this.$showError(e)
       }
+    },
+    humanTime2: function (t) {
+      return moment(t).fromNow()
     }
   }
 }

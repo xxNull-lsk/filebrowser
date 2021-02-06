@@ -40,7 +40,7 @@ func CopyFile(fs afero.Fs, source, dest string) error {
 
 	// Makes the directory needed to create the dst
 	// file.
-	err = fs.MkdirAll(filepath.Dir(dest), 0666)
+	err = fs.MkdirAll(filepath.Dir(dest), 0777)
 	if err != nil {
 		return err
 	}

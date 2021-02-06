@@ -12,6 +12,11 @@
           <i class="material-icons">share</i>
           <span>{{ $t('settings.shareManagement') }}</span>
         </router-link>
+
+        <router-link class="action" to="/files/.trash" :aria-label="$t('sidebar.trash')" :title="$t('sidebar.trash')">
+          <i class="material-icons">delete</i>
+          <span>{{ $t('sidebar.trash') }}</span>
+        </router-link>
       </div>
 
       <div>
@@ -38,7 +43,7 @@
           
           <div class="favorite_right">
             <button class="delete" @click="deleteFavorite(favorite.hash)" id="deleteFavorite">
-              <i class="material-icons">delete</i>
+              <i class="material-icons">remove_circle_outline</i>
             </button>
           </div>
         </div>

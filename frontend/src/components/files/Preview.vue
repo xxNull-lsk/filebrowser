@@ -219,7 +219,6 @@ export default {
     this.$store.commit("setPreviewMode", true);
     this.listing = this.oldReq.items;
     this.$root.$on("preview-deleted", this.deleted);
-    console.error(externPreviewURL);
     if (externPreviewURL != "") {
       this.hasExternPreviewURL = true;
     }

@@ -36,7 +36,9 @@
     "upload": "上傳",
     "sharedCode": "",
     "optionalSharedCode": "",
-    "favorite": ""
+    "favorite": "",
+    "restore": "",
+    "forceDelete": ""
   },
   "download": {
     "downloadFile": "下載檔案",
@@ -150,7 +152,15 @@
     "downloadPromptsWithSharedCode": "",
     "invalidSharedCode": "",
     "favorite": "",
-    "favoriteMessage": ""
+    "favoriteMessage": "",
+    "deleteToTrashMessageMultiple": "",
+    "deleteToTrashMessageSingle": "",
+    "restoreMessageMultiple": "",
+    "restoreMessageSingle": "",
+    "restoreFailedBecauseFileExist": "",
+    "originPath": "",
+    "deleteOperator": "",
+    "deleteDate": ""
   },
   "search": {
     "images": "影像",
@@ -249,7 +259,10 @@
     "preview": "預覽",
     "settings": "設定",
     "signup": "註冊",
-    "siteSettings": "網站設定"
+    "siteSettings": "網站設定",
+    "myShares": "",
+    "favorite": "",
+    "trash": ""
   },
   "success": {
     "linkCopied": "連結已複製！"

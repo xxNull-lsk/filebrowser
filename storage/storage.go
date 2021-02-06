@@ -5,6 +5,7 @@ import (
 	"github.com/filebrowser/filebrowser/v2/favorite"
 	"github.com/filebrowser/filebrowser/v2/settings"
 	"github.com/filebrowser/filebrowser/v2/share"
+	"github.com/filebrowser/filebrowser/v2/trash"
 	"github.com/filebrowser/filebrowser/v2/users"
 )
 
@@ -13,6 +14,7 @@ import (
 type Storage struct {
 	Users    *users.Storage
 	Share    *share.Storage
+	Trash    *trash.Storage
 	Favorite *favorite.Storage
 	Auth     *auth.Storage
 	Settings *settings.Storage
