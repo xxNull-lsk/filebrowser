@@ -1,6 +1,7 @@
 const getters = {
   isLogged: state => state.user !== null,
   isFiles: state => !state.loading && state.route.name === 'Files',
+  isTrash: state => !state.loading && state.route.path === '/files/.trash',
   isListing: (state, getters) => getters.isFiles && state.req.isDir,
   isEditor: (state, getters) => getters.isFiles && (state.req.type === 'text' || state.req.type === 'textImmutable'),
   isPreview: state => state.previewMode,

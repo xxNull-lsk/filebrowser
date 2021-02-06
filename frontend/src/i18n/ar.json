@@ -36,7 +36,9 @@
     "upload": "رفع",
     "sharedCode": "",
     "optionalSharedCode": "",
-    "favorite": ""
+    "favorite": "",
+    "restore": "",
+    "forceDelete": ""
   },
   "download": {
     "downloadFile": "Download File",
@@ -150,7 +152,12 @@
     "downloadPromptsWithSharedCode": "",
     "invalidSharedCode": "",
     "favorite": "",
-    "favoriteMessage": ""
+    "favoriteMessage": "",
+    "deleteToTrashMessageMultiple": "",
+    "deleteToTrashMessageSingle": "",
+    "restoreMessageMultiple": "",
+    "restoreMessageSingle": "",
+    "restoreFailedBecauseFileExist": ""
   },
   "search": {
     "images": "الصور",
@@ -252,8 +259,9 @@
     "settings": "الإعدادات",
     "signup": "Signup",
     "siteSettings": "إعدادات الموقع",
-    "myShares": "My Shares",
-    "favorite": "Favorite"
+    "myShares": "",
+    "favorite": "",
+    "trash": ""
   },
   "success": {
     "linkCopied": "تم نسخ الملف"

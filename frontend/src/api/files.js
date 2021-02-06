@@ -15,7 +15,8 @@ export async function fetch (url) {
       if (!data.url.endsWith('/')) data.url += '/'
       data.items = data.items.map((item, index) => {
         item.index = index
-        item.url = `${data.url}${encodeURIComponent(item.name)}`
+        //item.url = `${data.url}${encodeURIComponent(item.name)}`
+        item.url = `/files${item.path}`
 
         if (item.isDir) {
           item.url += '/'
@@ -51,6 +52,21 @@ async function resourceAction (url, method, content) {
 
 export async function remove (url) {
   return resourceAction(url, 'DELETE')
+}
+
+export async function trash (url) {
+  return resourceAction(url + "?action=trash", 'DELETE')
+}
+
+export async function untrash (url) {
+  url = removePrefix(url)
+
+  const res = await fetchURL(`/api${url}`, { method: 'DELETE' })
+  if (res.status !== 200) {
+    throw new Error(await res.text())
+  } else {
+    return res
+  }
 }
 
 export async function put (url, content = '') {

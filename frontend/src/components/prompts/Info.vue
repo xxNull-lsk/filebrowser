@@ -16,11 +16,16 @@
         <p><strong>{{ $t('prompts.numberDirs') }}:</strong> {{ req.numDirs }}</p>
       </template>
 
-      <template v-if="!dir">
+      <template v-if="!dir && !isTrash">
         <p><strong>MD5: </strong><code><a @click="checksum($event, 'md5')">{{ $t('prompts.show') }}</a></code></p>
         <p><strong>SHA1: </strong><code><a @click="checksum($event, 'sha1')">{{ $t('prompts.show') }}</a></code></p>
         <p><strong>SHA256: </strong><code><a @click="checksum($event, 'sha256')">{{ $t('prompts.show') }}</a></code></p>
         <p><strong>SHA512: </strong><code><a @click="checksum($event, 'sha512')">{{ $t('prompts.show') }}</a></code></p>
+      </template>
+      <template v-else>
+        <p v-for="(sel) in selected" :key="sel">
+          <strong>{{req.items[sel].name}} 原路径: </strong><code>{{ req.items[sel].originPath }}</code>
+        </p>
       </template>
     </div>
 
@@ -44,7 +49,7 @@ export default {
   name: 'info',
   computed: {
     ...mapState(['req', 'selected']),
-    ...mapGetters(['selectedCount', 'isListing']),
+    ...mapGetters(['selectedCount', 'isTrash', 'isListing']),
     humanSize: function () {
       if (this.selectedCount === 0 || !this.isListing) {
         return filesize(this.req.size)

@@ -36,7 +36,9 @@
     "upload": "Ladda upp",
     "sharedCode": "",
     "optionalSharedCode": "",
-    "favorite": ""
+    "favorite": "",
+    "restore": "",
+    "forceDelete": ""
   },
   "download": {
     "downloadFile": "Ladda ner fil",
@@ -150,7 +152,12 @@
     "downloadPromptsWithSharedCode": "",
     "invalidSharedCode": "",
     "favorite": "",
-    "favoriteMessage": ""
+    "favoriteMessage": "",
+    "deleteToTrashMessageMultiple": "",
+    "deleteToTrashMessageSingle": "",
+    "restoreMessageMultiple": "",
+    "restoreMessageSingle": "",
+    "restoreFailedBecauseFileExist": ""
   },
   "search": {
     "images": "Bilder",
@@ -253,7 +260,8 @@
     "signup": "Registrera",
     "siteSettings": "System inställningar",
     "myShares": "",
-    "favorite": ""
+    "favorite": "",
+    "trash": ""
   },
   "success": {
     "linkCopied": "Länk kopierad"

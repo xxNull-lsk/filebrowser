@@ -36,7 +36,9 @@
     "upload": "上传",
     "sharedCode": "提取码",
     "optionalSharedCode": "提取码(可选)",
-    "favorite": "收藏"
+    "favorite": "收藏",
+    "restore": "恢复",
+    "forceDelete": "直接删除"
   },
   "download": {
     "downloadFile": "下载文件",
@@ -151,7 +153,12 @@
     "downloadPromptsWithSharedCode": "下载链接：{0}  提取码：{1}",
     "invalidSharedCode": "提取码无效！",
     "favorite": "收藏夹",
-    "favoriteMessage": "将 {0} 添加到收藏夹"
+    "favoriteMessage": "将 {0} 添加到收藏夹",
+    "deleteToTrashMessageMultiple": "你确定要将这 {count} 个文件删除到回收站吗？",
+    "deleteToTrashMessageSingle": "你确定要将这个文件/文件夹删除到回收站吗？",
+    "restoreMessageMultiple": "你确定要恢复这 {count} 个文件/文件夹？",
+    "restoreMessageSingle": "你确定要恢复这个文件/文件夹？",
+    "restoreFailedBecauseFileExist": "目标文件已经存在，无法恢复。"
   },
   "search": {
     "images": "图像",
@@ -254,7 +261,8 @@
     "signup": "注册",
     "siteSettings": "网站设置",
     "myShares": "我的分享",
-    "favorite": "收藏夹"
+    "favorite": "收藏夹",
+    "trash": "回收站"
   },
   "success": {
     "linkCopied": "链接已复制！"

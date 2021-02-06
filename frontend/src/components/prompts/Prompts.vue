@@ -9,6 +9,7 @@
 import Help from './Help'
 import Info from './Info'
 import Delete from './Delete'
+import Restore from './Restore'
 import Rename from './Rename'
 import Download from './Download'
 import Move from './Move'
@@ -29,6 +30,7 @@ export default {
   components: {
     Info,
     Delete,
+    Restore,
     Rename,
     Download,
     Move,
@@ -65,6 +67,9 @@ export default {
           case 'delete':
             prompt.submit()
             break;
+          case 'restore':
+            prompt.submit()
+            break;
           case 'copy':
             prompt.copy(event)
             break;
@@ -86,6 +91,7 @@ export default {
         'info',
         'help',
         'delete',
+        'restore',
         'rename',
         'move',
         'copy',

@@ -36,7 +36,9 @@
     "upload": "Uploaden",
     "sharedCode": "",
     "optionalSharedCode": "",
-    "favorite": ""
+    "favorite": "",
+    "restore": "",
+    "forceDelete": ""
   },
   "download": {
     "downloadFile": "Bestand downloaden",
@@ -150,7 +152,12 @@
     "downloadPromptsWithSharedCode": "",
     "invalidSharedCode": "",
     "favorite": "",
-    "favoriteMessage": ""
+    "favoriteMessage": "",
+    "deleteToTrashMessageMultiple": "",
+    "deleteToTrashMessageSingle": "",
+    "restoreMessageMultiple": "",
+    "restoreMessageSingle": "",
+    "restoreFailedBecauseFileExist": ""
   },
   "search": {
     "images": "Afbeeldingen",
@@ -253,7 +260,8 @@
     "signup": "Registeren",
     "siteSettings": "Site-instellingen",
     "myShares": "",
-    "favorite": ""
+    "favorite": "",
+    "trash": ""
   },
   "success": {
     "linkCopied": "Link gekopieerd!"

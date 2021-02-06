@@ -24,7 +24,7 @@
       <p class="name">{{ name }}</p>
 
       <p v-if="isDir" class="size" data-order="-1"></p>
-      <p v-else :data-order="humanSize()">{{ humanSize() }}</p>
+      <p v-else class="size" :data-order="humanSize()">{{ humanSize() }}</p>
 
       <p class="modified">
         <time :datetime="modified">{{ humanTime() }}</time>
@@ -117,19 +117,19 @@ export default {
   },
   computed: {
     ...mapState(['user', 'selected', 'req', 'jwt']),
-    ...mapGetters(['selectedCount', 'isSharing']),
+    ...mapGetters(['selectedCount', 'isSharing', 'isTrash']),
     singleClick () {
-      if (this.isSharing) return false
+      if (this.isSharing || this.isTrash) return false
       return this.user.singleClick
     },
     isSelected () {
       return (this.selected.indexOf(this.index) !== -1)
     },
     isDraggable () {
-      return !this.isSharing && this.user.perm.rename
+      return !this.isTrash && !this.isSharing && this.user.perm.rename
     },
     canDrop () {
-      if (!this.isDir || this.isSharing) return false
+      if (!this.isDir || this.isSharing || this.isTrash) return false
 
       for (let i of this.selected) {
         if (this.req.items[i].url === this.url) {
@@ -285,6 +285,7 @@ export default {
       }
     },
     open: function () {
+      if (this.isTrash)return
       this.$router.push({path: this.url})
     }
   }

@@ -28,6 +28,7 @@ type FileInfo struct {
 	*Listing
 	Fs              afero.Fs          `json:"-"`
 	Path            string            `json:"path"`
+	OriginPath      string            `json:"originPath"`
 	Name            string            `json:"name"`
 	Size            int64             `json:"size"`
 	Extension       string            `json:"extension"`
@@ -50,6 +51,14 @@ type FileOptions struct {
 	ReadHeader      bool
 	SharedCodeToken string
 	Checker         rules.Checker
+}
+
+func Exist(fs afero.Fs, path string) bool {
+	_, err := fs.Stat(path)
+	if err != nil {
+		return false
+	}
+	return true
 }
 
 // NewFileInfo creates a File object from a path and a given user. This File
@@ -243,7 +252,6 @@ func (i *FileInfo) readListing(checker rules.Checker, readHeader bool) error {
 	for _, f := range dir {
 		name := f.Name()
 		fPath := path.Join(i.Path, name)
-
 		if !checker.Check(fPath) {
 			continue
 		}

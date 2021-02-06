@@ -7,7 +7,7 @@
 
       <span v-for="(link, index) in breadcrumbs" :key="index">
         <span class="chevron"><i class="material-icons">keyboard_arrow_right</i></span>
-        <router-link :to="link.url">{{ link.name }}</router-link>
+        <router-link :to="link.url">{{ link.name==".trash"?$t('sidebar.trash'):link.name }}</router-link>
       </span>
     </div>
 
