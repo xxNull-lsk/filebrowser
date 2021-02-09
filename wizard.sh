@@ -89,9 +89,9 @@ buildDockerImage() {
         exit 1
     fi
     
-    docker build -f Dockerfile.armv7.debian -t filebrowser:${VERSION}_armv7 .
-    docker save filebrowser:${VERSION}_armv7 -o filebrowser_${VERSION}_armv7.tar
-    mv filebrowser_${VERSION}_armv7.tar ./dist/filebrowser_${VERSION}_armv7.tar
+    docker build -f Dockerfile.armv7.debian -t filebrowser:${VERSION}.armv7 .
+    docker save filebrowser:${VERSION}.armv7 -o filebrowser_${VERSION}.armv7.tar
+    mv filebrowser_${VERSION}.armv7.tar ./dist/filebrowser_${VERSION}.armv7.tar
 
     docker build -t filebrowser:$VERSION .
     docker save filebrowser:${VERSION} -o filebrowser_${VERSION}.tar

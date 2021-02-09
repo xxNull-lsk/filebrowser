@@ -3,7 +3,12 @@
     <div class="card-content">
       <p v-if="req.kind !== 'listing'">{{ $t(this.isTrash?'prompts.deleteMessageSingle':'prompts.deleteToTrashMessageSingle') }}</p>
       <p v-else>{{ $t(this.isTrash?'prompts.deleteMessageMultiple':'prompts.deleteToTrashMessageMultiple', { count: selectedCount}) }}</p>
-      <input v-if="!isTrash" type="checkbox" v-model="force_delete"> {{  $t('buttons.forceDelete')  }}
+      <p v-if="!isTrash">
+        <input type="checkbox" v-model="force_delete" />
+        <label class="checkbox-title">
+          {{  $t('buttons.forceDelete')  }}
+        </label>
+      </p>
     </div>
     <div class="card-action">
       <button @click="$store.commit('closeHovers')"

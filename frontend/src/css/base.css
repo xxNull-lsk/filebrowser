@@ -191,3 +191,7 @@ main {
 .break-word {
   word-break: break-all;
 }
+
+.checkbox-title {
+  padding-left: .2em;
+}
