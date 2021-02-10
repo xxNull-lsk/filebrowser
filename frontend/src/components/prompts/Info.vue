@@ -8,12 +8,18 @@
       <p v-if="selected.length > 1">{{ $t('prompts.filesSelected', { count: selected.length }) }}</p>
 
       <p class="break-word" v-if="selected.length < 2"><strong>{{ $t('prompts.displayName') }}</strong> {{ name }}</p>
-      <p v-if="!dir || selected.length > 1"><strong>{{ $t('prompts.size') }}:</strong> <span id="content_length"></span> {{ humanSize }}</p>
-      <p v-if="selected.length < 2"><strong>{{ $t('prompts.lastModified') }}:</strong> {{ humanTime }}</p>
+      <p v-if="!dir || selected.length > 1">
+        <strong>{{ $t('prompts.size') }}</strong>
+        <span id="content_length"> {{ humanSize }} </span>
+        </p>
+      <p v-if="selected.length < 2">
+        <strong>{{ $t('prompts.lastModified') }}</strong>
+        <span :title="localModfiyTime()">{{ humanTime }}</span>
+      </p>
 
       <template v-if="dir && selected.length === 0">
-        <p><strong>{{ $t('prompts.numberFiles') }}:</strong> {{ req.numFiles }}</p>
-        <p><strong>{{ $t('prompts.numberDirs') }}:</strong> {{ req.numDirs }}</p>
+        <p><strong>{{ $t('prompts.numberFiles') }}</strong> {{ req.numFiles }}</p>
+        <p><strong>{{ $t('prompts.numberDirs') }}</strong> {{ req.numDirs }}</p>
       </template>
 
       <template v-if="!dir && !isTrash">
@@ -22,12 +28,12 @@
         <p><strong>SHA256: </strong><code><a @click="checksum($event, 'sha256')">{{ $t('prompts.show') }}</a></code></p>
         <p><strong>SHA512: </strong><code><a @click="checksum($event, 'sha512')">{{ $t('prompts.show') }}</a></code></p>
       </template>
-      <template v-else>
+      <template v-if="isTrash">
         <div v-for="(sel) in selected" :key="sel" class="delete-info-group">
           <h6 v-if="selected.length > 1">{{ req.items[sel].name }}</h6>
-          <p><strong>{{ $t('prompts.originPath') }} </strong><code>{{ req.items[sel].originPath }}</code></p>
+          <p><strong>{{ $t('prompts.originPath') }} </strong><span>{{ req.items[sel].originPath }}</span></p>
           <p><strong>{{ $t('prompts.deleteOperator') }} </strong><span>{{ req.items[sel].userName }}</span></p>
-          <p><strong>{{ $t('prompts.deleteDate') }} </strong><span :title="req.items[sel].deleteTime">{{ humanTime2(req.items[sel].deleteTime) }}</span></p>
+          <p><strong>{{ $t('prompts.deleteDate') }} </strong><span :title="localTime(req.items[sel].deleteTime)">{{ humanTime2(req.items[sel].deleteTime) }}</span></p>
         </div>
       </template>
     </div>
@@ -71,7 +77,7 @@ export default {
         return moment(this.req.modified).fromNow()
       }
 
-      return moment(this.req.items[this.selected[0]]).fromNow()
+      return moment(this.req.items[this.selected[0]].modified).fromNow()
     },
     name: function () {
       return this.selectedCount === 0 ? this.req.name : this.req.items[this.selected[0]].name
@@ -104,7 +110,18 @@ export default {
     },
     humanTime2: function (t) {
       return moment(t).fromNow()
-    }
+    },
+    localTime: function (t) {
+      var d = new Date(t)
+      return d.toLocaleString()
+    },
+    localModfiyTime: function () {
+      if (this.selectedCount === 0) {
+        return this.localTime(this.req.modified)
+      }
+
+      return this.localTime(this.req.items[this.selected[0]].modified)
+    } 
   }
 }
 </script>

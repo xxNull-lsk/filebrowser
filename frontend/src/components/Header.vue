@@ -5,7 +5,7 @@
         <i class="material-icons">menu</i>
       </button>
       <img :src="logoURL" :alt="name">
-      <span class="logoName">{{ name }}</span>
+      <span class="logo-name">{{ name }}</span>
       <search v-if="isLogged"></search>
     </div>
     <div>
@@ -30,8 +30,9 @@
         </div>
 
         <!-- This buttons are shown on a dropdown on mobile phones -->
+        <div>
         <div id="dropdown" :class="{ active: showMore }">
-          <div v-if="!isListing || !isMobile">
+          <div v-if="!isListing || !isMobile" class="header-actions">
             <share-button v-show="showShareButton"></share-button>
             <rename-button v-show="showRenameButton"></rename-button>
             <copy-button v-show="showCopyButton"></copy-button>
@@ -54,9 +55,31 @@
             <span>{{ $t('buttons.select') }}</span>
           </button>
         </div>
+        </div>
+
       </template>
 
       <div v-show="showOverlay" @click="resetPrompts" class="overlay"></div>
+      <div class="user-info" @mouseleave="mouseleave">
+        <p class="menu-title" @click="selectorToggle">
+            <i class="material-icons">person</i>
+            <span class="user-name">{{ this.$store.state.user.userName }} </span>
+            <i class="material-icons">arrow_drop_down</i>
+        </p>
+        <div class="menu-items" v-show="showMenu">
+
+          <router-link class="action" to="/settings" :aria-label="$t('sidebar.settings')" :title="$t('sidebar.settings')">
+            <i class="material-icons">settings_applications</i>
+            <span>{{ $t('sidebar.settings') }}</span>
+          </router-link>
+
+          <button v-if="authMethod == 'json'" @click="logout" class="action" id="logout" :aria-label="$t('sidebar.logout')" :title="$t('sidebar.logout')">
+            <i class="material-icons">exit_to_app</i>
+            <span>{{ $t('sidebar.logout') }}</span>
+          </button>
+        </div>
+      </div>
+      
     </div>
   </header>
 </template>
@@ -81,6 +104,8 @@ import {mapGetters, mapState} from 'vuex'
 import { name, logoURL, enableExec } from '@/utils/constants'
 import * as api from '@/api'
 import buttons from '@/utils/buttons'
+import * as auth from '@/utils/auth'
+import { authMethod } from '@/utils/constants'
 
 export default {
   name: 'header-layout',
@@ -104,6 +129,7 @@ export default {
   data: function () {
     return {
       width: window.innerWidth,
+      showMenu: false,
       pluginData: {
         api,
         buttons,
@@ -137,6 +163,7 @@ export default {
     ]),
     logoURL: () => logoURL,
     name: () => name,
+    authMethod: () => authMethod,
     isExecEnabled: () => enableExec,
     isMobile () {
       return this.width <= 736
@@ -208,6 +235,13 @@ export default {
     },
     resetPrompts () {
       this.$store.commit('closeHovers')
+    },
+    logout: auth.logout,
+    selectorToggle(){
+        this.showMenu = !this.showMenu
+    },
+    mouseleave(){
+        this.showMenu = false
     }
   }
 }

@@ -20,18 +20,6 @@
       </div>
 
       <div>
-        <router-link class="action" to="/settings" :aria-label="$t('sidebar.settings')" :title="$t('sidebar.settings')">
-          <i class="material-icons">settings_applications</i>
-          <span>{{ $t('sidebar.settings') }}</span>
-        </router-link>
-
-        <button v-if="authMethod == 'json'" @click="logout" class="action" id="logout" :aria-label="$t('sidebar.logout')" :title="$t('sidebar.logout')">
-          <i class="material-icons">exit_to_app</i>
-          <span>{{ $t('sidebar.logout') }}</span>
-        </button>
-      </div>
-
-      <div>
         <span class="favorite_title">{{$t('sidebar.favorite')}}</span>
         <div v-for="favorite in favorites" class="favorite" v-bind:key="favorite">
           <router-link class="favorite_left" :key="favorite.hash" :to="'/files' + favorite.path" :aria-label="favorite.name" :title="favorite.name">
@@ -75,8 +63,7 @@
 <script>
 import { mapState, mapGetters } from 'vuex'
 import { favorites as favorite_api } from "@/api";
-import * as auth from '@/utils/auth'
-import { version, signup, disableExternal, noAuth, authMethod } from '@/utils/constants'
+import { version, signup, disableExternal, noAuth } from '@/utils/constants'
 
 export default {
   name: 'sidebar',
@@ -102,8 +89,7 @@ export default {
     signup: () => signup,
     version: () => version,
     disableExternal: () => disableExternal,
-    noAuth: () => noAuth,
-    authMethod: () => authMethod
+    noAuth: () => noAuth
   },
   methods: {
     deleteFavorite(hash){
@@ -119,8 +105,7 @@ export default {
     },
     help () {
       this.$store.commit('showHover', 'help')
-    },
-    logout: auth.logout
+    }
   }
 }
 </script>

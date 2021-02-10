@@ -54,7 +54,7 @@ i.spin {
 nav {
   width: 16em;
   position: fixed;
-  top: 4em;
+  top: 4.6em;
   left: 0;
 }
 
@@ -134,6 +134,10 @@ nav .action {
 
 nav>div {
   border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+nav>div:first-child {
+  border: 0;
 }
 
 nav .action>* {

@@ -361,4 +361,13 @@
   margin-left: .5rem;
 }
 
+.user-name {
+  color: #546E7A
+}
+
+
+.logo-name {
+  color: #546E7A
+}
+
 @import './mobile.css';
