@@ -52,6 +52,11 @@
   vertical-align: bottom;
 }
 
+#listing .item .color-icon {
+  width: 3em;
+  height: 3em;
+}
+
 #listing .item img {
   width: 4em;
   height: 4em;
@@ -134,6 +139,11 @@
 
 #listing.list .item div:first-of-type i {
   font-size: 2em;
+}
+
+#listing.list .item div:first-of-type .color-icon {
+  width: 2em;
+  height: 2em;
 }
 
 #listing.list .item div:first-of-type img {

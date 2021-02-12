@@ -1,0 +1,415 @@
+{
+  "id": "2372826",
+  "name": "file-browser",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "7813174",
+      "name": "folder",
+      "font_class": "folder",
+      "unicode": "e60c",
+      "unicode_decimal": 58892
+    },
+    {
+      "icon_id": "4439404",
+      "name": "iso",
+      "font_class": "iso",
+      "unicode": "e60b",
+      "unicode_decimal": 58891
+    },
+    {
+      "icon_id": "10084293",
+      "name": "pdf",
+      "font_class": "pdf",
+      "unicode": "e6a6",
+      "unicode_decimal": 59046
+    },
+    {
+      "icon_id": "4535798",
+      "name": "msi",
+      "font_class": "msi",
+      "unicode": "e619",
+      "unicode_decimal": 58905
+    },
+    {
+      "icon_id": "5266952",
+      "name": "CPP",
+      "font_class": "cpp",
+      "unicode": "e660",
+      "unicode_decimal": 58976
+    },
+    {
+      "icon_id": "8042533",
+      "name": "icon-file",
+      "font_class": "file",
+      "unicode": "e60f",
+      "unicode_decimal": 58895
+    },
+    {
+      "icon_id": "8288650",
+      "name": "image",
+      "font_class": "image",
+      "unicode": "e606",
+      "unicode_decimal": 58886
+    },
+    {
+      "icon_id": "4316522",
+      "name": "qiyeyuandaima-h",
+      "font_class": "h",
+      "unicode": "e680",
+      "unicode_decimal": 59008
+    },
+    {
+      "icon_id": "4316527",
+      "name": "qiyeyuandaima-hpp",
+      "font_class": "hpp",
+      "unicode": "e682",
+      "unicode_decimal": 59010
+    },
+    {
+      "icon_id": "12077767",
+      "name": "java",
+      "font_class": "java",
+      "unicode": "e601",
+      "unicode_decimal": 58881
+    },
+    {
+      "icon_id": "12660330",
+      "name": "python",
+      "font_class": "pyc",
+      "unicode": "e605",
+      "unicode_decimal": 58885
+    },
+    {
+      "icon_id": "19209001",
+      "name": "LOG",
+      "font_class": "log",
+      "unicode": "e651",
+      "unicode_decimal": 58961
+    },
+    {
+      "icon_id": "14011268",
+      "name": "docx",
+      "font_class": "docx",
+      "unicode": "e7b0",
+      "unicode_decimal": 59312
+    },
+    {
+      "icon_id": "5916396",
+      "name": "BAT",
+      "font_class": "bat",
+      "unicode": "e613",
+      "unicode_decimal": 58899
+    },
+    {
+      "icon_id": "5916430",
+      "name": "SH",
+      "font_class": "sh",
+      "unicode": "e62f",
+      "unicode_decimal": 58927
+    },
+    {
+      "icon_id": "5916438",
+      "name": "YML",
+      "font_class": "yml",
+      "unicode": "e631",
+      "unicode_decimal": 58929
+    },
+    {
+      "icon_id": "8322894",
+      "name": "html",
+      "font_class": "html",
+      "unicode": "e787",
+      "unicode_decimal": 59271
+    },
+    {
+      "icon_id": "10460855",
+      "name": "doc",
+      "font_class": "doc",
+      "unicode": "e614",
+      "unicode_decimal": 58900
+    },
+    {
+      "icon_id": "12600861",
+      "name": "pptx",
+      "font_class": "pptx",
+      "unicode": "e650",
+      "unicode_decimal": 58960
+    },
+    {
+      "icon_id": "12600980",
+      "name": "xlsx",
+      "font_class": "xlsx",
+      "unicode": "e679",
+      "unicode_decimal": 59001
+    },
+    {
+      "icon_id": "12904097",
+      "name": "CSS",
+      "font_class": "css",
+      "unicode": "e612",
+      "unicode_decimal": 58898
+    },
+    {
+      "icon_id": "12904101",
+      "name": "JSON",
+      "font_class": "json",
+      "unicode": "e615",
+      "unicode_decimal": 58901
+    },
+    {
+      "icon_id": "12904102",
+      "name": "JS",
+      "font_class": "js",
+      "unicode": "e616",
+      "unicode_decimal": 58902
+    },
+    {
+      "icon_id": "12904104",
+      "name": "JAR",
+      "font_class": "jar",
+      "unicode": "e618",
+      "unicode_decimal": 58904
+    },
+    {
+      "icon_id": "17222492",
+      "name": "pythonscrip",
+      "font_class": "py",
+      "unicode": "e80a",
+      "unicode_decimal": 59402
+    },
+    {
+      "icon_id": "17874101",
+      "name": "go",
+      "font_class": "go",
+      "unicode": "e709",
+      "unicode_decimal": 59145
+    },
+    {
+      "icon_id": "18613395",
+      "name": "XML",
+      "font_class": "xml",
+      "unicode": "e632",
+      "unicode_decimal": 58930
+    },
+    {
+      "icon_id": "19035892",
+      "name": "vue",
+      "font_class": "vue",
+      "unicode": "e633",
+      "unicode_decimal": 58931
+    },
+    {
+      "icon_id": "1344627",
+      "name": "audio",
+      "font_class": "audio",
+      "unicode": "e8a4",
+      "unicode_decimal": 59556
+    },
+    {
+      "icon_id": "1344652",
+      "name": "video",
+      "font_class": "video",
+      "unicode": "e8b4",
+      "unicode_decimal": 59572
+    },
+    {
+      "icon_id": "6346095",
+      "name": "folder-add-fill",
+      "font_class": "folder-add",
+      "unicode": "e724",
+      "unicode_decimal": 59172
+    },
+    {
+      "icon_id": "19912525",
+      "name": "文件类型 - 压缩文件",
+      "font_class": "xz",
+      "unicode": "ebfe",
+      "unicode_decimal": 60414
+    },
+    {
+      "icon_id": "1200534",
+      "name": "php",
+      "font_class": "php",
+      "unicode": "e681",
+      "unicode_decimal": 59009
+    },
+    {
+      "icon_id": "2295972",
+      "name": "ppt",
+      "font_class": "ppt",
+      "unicode": "e608",
+      "unicode_decimal": 58888
+    },
+    {
+      "icon_id": "2296006",
+      "name": "excel",
+      "font_class": "xls",
+      "unicode": "e617",
+      "unicode_decimal": 58903
+    },
+    {
+      "icon_id": "2546305",
+      "name": "文件类型",
+      "font_class": "sql",
+      "unicode": "e69b",
+      "unicode_decimal": 59035
+    },
+    {
+      "icon_id": "5916433",
+      "name": "TAR",
+      "font_class": "tar",
+      "unicode": "e622",
+      "unicode_decimal": 58914
+    },
+    {
+      "icon_id": "6233075",
+      "name": "AVI图标",
+      "font_class": "avi",
+      "unicode": "e63c",
+      "unicode_decimal": 58940
+    },
+    {
+      "icon_id": "10135192",
+      "name": "chm",
+      "font_class": "chm",
+      "unicode": "e8aa",
+      "unicode_decimal": 59562
+    },
+    {
+      "icon_id": "10135229",
+      "name": "gz",
+      "font_class": "gz",
+      "unicode": "e8b0",
+      "unicode_decimal": 59568
+    },
+    {
+      "icon_id": "12904114",
+      "name": "DLL",
+      "font_class": "dll",
+      "unicode": "e61b",
+      "unicode_decimal": 58907
+    },
+    {
+      "icon_id": "12904122",
+      "name": "GIF",
+      "font_class": "gif",
+      "unicode": "e61f",
+      "unicode_decimal": 58911
+    },
+    {
+      "icon_id": "13302957",
+      "name": "c",
+      "font_class": "c",
+      "unicode": "e630",
+      "unicode_decimal": 58928
+    },
+    {
+      "icon_id": "13412247",
+      "name": "文件类型 - PSD",
+      "font_class": "psd",
+      "unicode": "e627",
+      "unicode_decimal": 58919
+    },
+    {
+      "icon_id": "13412249",
+      "name": "文件类型 - CAD",
+      "font_class": "cad",
+      "unicode": "e628",
+      "unicode_decimal": 58920
+    },
+    {
+      "icon_id": "15378556",
+      "name": "lua",
+      "font_class": "lua",
+      "unicode": "ebfd",
+      "unicode_decimal": 60413
+    },
+    {
+      "icon_id": "17810976",
+      "name": "7z",
+      "font_class": "7z",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    },
+    {
+      "icon_id": "17810992",
+      "name": "exe",
+      "font_class": "exe",
+      "unicode": "e602",
+      "unicode_decimal": 58882
+    },
+    {
+      "icon_id": "17810998",
+      "name": "mkv",
+      "font_class": "mkv",
+      "unicode": "e603",
+      "unicode_decimal": 58883
+    },
+    {
+      "icon_id": "17811002",
+      "name": "rar",
+      "font_class": "rar",
+      "unicode": "e604",
+      "unicode_decimal": 58884
+    },
+    {
+      "icon_id": "17811005",
+      "name": "txt",
+      "font_class": "txt",
+      "unicode": "e607",
+      "unicode_decimal": 58887
+    },
+    {
+      "icon_id": "17811007",
+      "name": "ini",
+      "font_class": "ini",
+      "unicode": "e609",
+      "unicode_decimal": 58889
+    },
+    {
+      "icon_id": "17811008",
+      "name": "zip",
+      "font_class": "zip",
+      "unicode": "e60a",
+      "unicode_decimal": 58890
+    },
+    {
+      "icon_id": "19145271",
+      "name": "jpg",
+      "font_class": "jpg",
+      "unicode": "e62c",
+      "unicode_decimal": 58924
+    },
+    {
+      "icon_id": "19145277",
+      "name": "png",
+      "font_class": "png",
+      "unicode": "e62d",
+      "unicode_decimal": 58925
+    },
+    {
+      "icon_id": "19145280",
+      "name": "mp4",
+      "font_class": "mp4",
+      "unicode": "e62e",
+      "unicode_decimal": 58926
+    },
+    {
+      "icon_id": "19649317",
+      "name": "apk",
+      "font_class": "apk",
+      "unicode": "e641",
+      "unicode_decimal": 58945
+    },
+    {
+      "icon_id": "19649322",
+      "name": "MP3",
+      "font_class": "mp3",
+      "unicode": "e642",
+      "unicode_decimal": 58946
+    }
+  ]
+}

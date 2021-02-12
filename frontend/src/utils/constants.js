@@ -13,6 +13,7 @@ const noAuth = window.FileBrowser.NoAuth
 const authMethod = window.FileBrowser.AuthMethod
 const loginPage = window.FileBrowser.LoginPage
 const theme = window.FileBrowser.Theme
+const iconTheme = window.FileBrowser.IconTheme
 const enableThumbs = window.FileBrowser.EnableThumbs
 const resizePreview = window.FileBrowser.ResizePreview
 const enableExec = window.FileBrowser.EnableExec
@@ -32,6 +33,7 @@ export {
   authMethod,
   loginPage,
   theme,
+  iconTheme,
   enableThumbs,
   resizePreview,
   enableExec

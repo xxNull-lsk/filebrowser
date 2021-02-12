@@ -16,8 +16,11 @@
       <lazy-component v-if="type==='image' && isThumbsEnabled && !isSharing" :timeout="1000">
         <img :src="thumbnailUrl">
       </lazy-component>
-      <i v-else-if="use_material_icons" class="material-icons">{{ icon }}</i>
-      <i v-else :class="icon"></i>
+      <i v-else-if="isFontIcon()" :class="icon"></i>
+      <svg v-else-if="isColorIcon()" class="color-icon" aria-hidden="true">
+        <use :xlink:href="icon"></use>
+      </svg>
+      <i v-else class="material-icons">{{ icon }}</i>
     </div>
 
     <div>
@@ -34,7 +37,7 @@
 </template>
 
 <script>
-import { baseURL, enableThumbs } from '@/utils/constants'
+import { baseURL, enableThumbs, iconTheme } from '@/utils/constants'
 import { mapMutations, mapGetters, mapState } from 'vuex'
 import filesize from 'filesize'
 import moment from 'moment'
@@ -46,74 +49,18 @@ export default {
   data: function () {
     return {
       touches: 0,
-      use_material_icons: true,
       icon: ''
     }
   },
   props: ['name', 'isDir', 'url', 'type', 'size', 'modified', 'index'],
   mounted () {
-      if (this.isDir){
-        this.use_material_icons = false
-        this.icon = 'fa fa-folder-o'
-        return
-      }
-
-      var items = this.name.split('.')
-      var ext_name = items[items.length - 1].toLowerCase()
-      if (ext_name === 'apk'){
-        this.use_material_icons = false
-        this.icon = 'fa fa-android'
-      } 
-      else if (ext_name === 'txt' || ext_name === 'log'
-              || ext_name === "json" || ext_name === "yml"){
-        this.use_material_icons = false
-        this.icon = 'fa fa-file-text-o'
-      } 
-      else if (ext_name === 'doc' || ext_name === 'docx'){
-        this.use_material_icons = false
-        this.icon = 'fa fa-file-word-o'
-      } 
-      else if (ext_name === 'xls' || ext_name === 'xlsx'){
-        this.use_material_icons = false
-        this.icon = 'fa fa-file-excel-o'
-      } 
-      else if (ext_name === 'ppt' || ext_name === 'pptx'){
-        this.use_material_icons = false
-        this.icon = 'fa fa-file-powerpoint-o'
-      } 
-      else if (ext_name === 'pdf'){
-        this.use_material_icons = false
-        this.icon = 'fa fa-file-pdf-o'
-      } 
-      else if (ext_name === 'zip' || ext_name == "rar" || ext_name == "7z" || ext_name == "gz" || ext_name == "tar"){
-        this.use_material_icons = false
-        this.icon = 'fa fa-file-zip-o'
-      }
-      else if (ext_name === 'c' || ext_name == "cpp"
-              || ext_name == "h" || ext_name == "hpp"
-              || ext_name == "py" || ext_name == "php"
-              || ext_name == "js" || ext_name == "java"
-              || ext_name == "html" || ext_name == "xml"
-              || ext_name == "sh" || ext_name == "css"
-              || ext_name == "vue" || ext_name == "md"){
-        this.use_material_icons = false
-        this.icon = 'fa fa-file-code-o'
-      }
-      else if (this.type === 'image'){
-        this.use_material_icons = false
-        this.icon = 'fa fa-file-photo-o'
-      }
-      else if (this.type === 'audio'){
-        this.use_material_icons = false
-        this.icon = 'fa fa-file-sound-o'
-      }
-      else if (this.type === 'video'){
-        this.use_material_icons = false
-        this.icon = 'fa fa-file-video-o'
-      } else {
-      this.use_material_icons = false
-      this.icon = 'fa fa-file-o'
-      }
+    if (this.isFontIcon()){
+      this.fontIcons()
+    } else if (this.isColorIcon()) {
+      this.colorIcons()
+    } else {
+      this.imaterialIcons()
+    }
   },
   computed: {
     ...mapState(['user', 'selected', 'req', 'jwt']),
@@ -145,7 +92,7 @@ export default {
     },
     isThumbsEnabled () {
       return enableThumbs
-    }
+    },
   },
   methods: {
     ...mapMutations(['addSelected', 'removeSelected', 'resetSelected']),
@@ -287,7 +234,185 @@ export default {
     open: function () {
       if (this.isTrash)return
       this.$router.push({path: this.url})
+    },
+    isFontIcon () {
+      return iconTheme === "font-icon"
+    },
+    isColorIcon () {
+      return iconTheme === "color-icon"
+    },
+    isMaterial () {
+      return iconTheme === "material-icon"
+    },
+    imaterialIcons() {
+      if (this.isDir) this.icon = 'folder'
+      else if (this.type === 'image') this.icon = 'insert_photo'
+      else if (this.type === 'audio') this.icon = 'volume_up'
+      else if (this.type === 'video') this.icon = 'movie'
+      else this.icon = 'insert_drive_file'
+    },
+    colorIcons () {
+        if (this.isDir){
+          this.icon = '#icon-folder'
+          return
+        }
+
+        var items = this.name.split('.')
+        var ext_name = items[items.length - 1].toLowerCase()
+        var icons = {
+          '7z': 'icon-7z',
+          'avi': 'icon-avi',
+          'apk': 'icon-apk',
+          'bat': 'icon-bat',
+          'c': 'icon-c',
+          'cad': 'icon-cad',
+          'cc': 'icon-cpp',
+          'chm': 'icon-chm',
+          'cpp': 'icon-cpp',
+          'cxx': 'icon-cpp',
+          'css': 'icon-css',
+          'doc': 'icon-doc',
+          'docx': 'icon-docx',
+          'dll': 'icon-dll',
+          'exe': 'icon-exe',
+          'gif': 'icon-gif',
+          'gz': 'icon-gz',
+          'go': 'icon-go',
+          'h': 'icon-h',
+          'htm': 'icon-html',
+          'html': 'icon-html',
+          'hpp': 'icon-hpp',
+          'ini': 'icon-ini',
+          'jar': 'icon-jar',
+          'jpg': 'icon-jpg',
+          'jpeg': 'icon-jpg',
+          'json': 'icon-json',
+          'js': 'icon-js',
+          'java': 'icon-java',
+          'lua': 'icon-lua',
+          'log': 'icon-log',
+          'mp3': 'icon-mp3',
+          'mp4': 'icon-mp4',
+          'mkv': 'icon-mkv',
+          'msi': 'icon-msi',
+          'png': 'icon-png',
+          'psd': 'icon-psd',
+          'ppt': 'icon-ppt',
+          'pptx': 'icon-pptx',
+          'py': 'icon-py',
+          'pyc': 'icon-pyc',
+          'php': 'icon-php',
+          'pdf': 'icon-pdf',
+          'rar': 'icon-rar',
+          'sh': 'icon-sh',
+          'sql': 'icon-sql',
+          'txt': 'icon-txt',
+          'tar': 'icon-tar',
+          'vue': 'icon-vue',
+          'xls': 'icon-xls',
+          'xlsx': 'icon-xlsx',
+          'xz': 'icon-xz',
+          'xml': 'icon-xml',
+          'yml': 'icon-yml',
+          'zip': 'icon-zip',
+        }
+        if (icons[ext_name] != undefined) {
+          this.icon = icons[ext_name]
+        }
+        else if (this.type === 'image'){
+          this.icon = 'icon-image'
+        }
+        else if (this.type === 'audio'){
+          this.icon = 'icon-audio'
+        }
+        else if (this.type === 'video'){
+          this.icon = 'icon-video'
+        } else {
+          this.icon = 'icon-file'
+        }
+        this.icon = '#' + this.icon
+    },
+    fontIcons () {
+        if (this.isDir){
+          this.icon = 'iconfont icon-folder'
+          return
+        }
+
+        var items = this.name.split('.')
+        var ext_name = items[items.length - 1].toLowerCase()
+        var icons = {
+          '7z': 'icon-7z',
+          'avi': 'icon-avi',
+          'apk': 'icon-apk',
+          'bat': 'icon-bat',
+          'c': 'icon-c',
+          'cad': 'icon-cad',
+          'cc': 'icon-cpp',
+          'chm': 'icon-chm',
+          'cpp': 'icon-cpp',
+          'cxx': 'icon-cpp',
+          'css': 'icon-css',
+          'doc': 'icon-doc',
+          'docx': 'icon-docx',
+          'dll': 'icon-dll',
+          'exe': 'icon-exe',
+          'gif': 'icon-gif',
+          'gz': 'icon-gz',
+          'go': 'icon-go',
+          'h': 'icon-h',
+          'htm': 'icon-html',
+          'html': 'icon-html',
+          'hpp': 'icon-hpp',
+          'ini': 'icon-ini',
+          'jar': 'icon-jar',
+          'jpg': 'icon-jpg',
+          'jpeg': 'icon-jpg',
+          'json': 'icon-json',
+          'js': 'icon-js',
+          'java': 'icon-java',
+          'lua': 'icon-lua',
+          'log': 'icon-log',
+          'mp3': 'icon-mp3',
+          'mp4': 'icon-mp4',
+          'mkv': 'icon-mkv',
+          'msi': 'icon-msi',
+          'png': 'icon-png',
+          'psd': 'icon-psd',
+          'ppt': 'icon-ppt',
+          'pptx': 'icon-pptx',
+          'py': 'icon-py',
+          'pyc': 'icon-pyc',
+          'php': 'icon-php',
+          'pdf': 'icon-pdf',
+          'rar': 'icon-rar',
+          'sh': 'icon-sh',
+          'sql': 'icon-sql',
+          'txt': 'icon-txt',
+          'tar': 'icon-tar',
+          'vue': 'icon-vue',
+          'xls': 'icon-xls',
+          'xlsx': 'icon-xlsx',
+          'xz': 'icon-xz',
+          'xml': 'icon-xml',
+          'yml': 'icon-yml',
+          'zip': 'icon-zip',
+        }
+        if (icons[ext_name] != undefined) {
+          this.icon = icons[ext_name]
+        }
+        else if (this.type === 'image'){
+          this.icon = 'icon-image'
+        }
+        else if (this.type === 'audio'){
+          this.icon = 'icon-audio'
+        }
+        else if (this.type === 'video'){
+          this.icon = 'icon-video'
+        } else {
+          this.icon = 'icon-file'
+        }
+        this.icon = 'iconfont ' + this.icon
     }
-  }
+  },
 }
 </script>

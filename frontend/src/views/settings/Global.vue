@@ -37,6 +37,11 @@
         </p>
 
         <p>
+          <label for="icon_theme">{{ $t('settings.iconThemes.title') }}</label>
+          <icon-themes class="input input--block" :icon_theme.sync="settings.branding.iconTheme" id="icon-theme"></icon-themes>
+        </p>
+
+        <p>
           <label for="branding-name">{{ $t('settings.instanceName') }}</label>
           <input class="input input--block" type="text" v-model="settings.branding.name" id="branding-name" />
         </p>
@@ -106,12 +111,14 @@ import { settings as api } from '@/api'
 import UserForm from '@/components/settings/UserForm'
 import Rules from '@/components/settings/Rules'
 import Themes from '@/components/settings/Themes'
+import IconThemes from '@/components/settings/IconThemes'
 import { enableExec } from '@/utils/constants'
 
 export default {
   name: 'settings',
   components: {
     Themes,
+    IconThemes,
     UserForm,
     Rules
   },

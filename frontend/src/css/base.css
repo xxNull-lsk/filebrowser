@@ -195,3 +195,11 @@ main {
 .checkbox-title {
   padding-left: .2em;
 }
+
+.color-icon {
+  width: 2em;
+  height: 2em;
+  vertical-align: -0.15em;
+  fill: currentColor;
+  overflow: hidden;
+}
