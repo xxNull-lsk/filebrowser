@@ -27,7 +27,7 @@
       <p v-else class="size" :data-order="humanSize()">{{ humanSize() }}</p>
 
       <p class="modified">
-        <time :datetime="modified">{{ humanTime() }}</time>
+        <time :datetime="modified" :title="localTime()">{{ humanTime() }}</time>
       </p>
     </div>
   </div>
@@ -151,6 +151,10 @@ export default {
     ...mapMutations(['addSelected', 'removeSelected', 'resetSelected']),
     humanSize: function () {
       return filesize(this.size)
+    },
+    localTime: function () {
+      var d = new Date(this.modified)
+      return d.toLocaleString()
     },
     humanTime: function () {
       return moment(this.modified).fromNow()

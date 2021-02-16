@@ -50,8 +50,8 @@ header>div div {
   position: relative;
 }
 
-header>div:last-child div {
-  display: flex;
+header .header-actions {
+  display: inline;
 }
 
 header>div:first-child {
@@ -66,7 +66,7 @@ header .search-button {
   display: none;
 }
 
-.logoName {
+.logo-name {
   padding-right: 0.8em;
 }
 
@@ -260,4 +260,40 @@ header .search-button {
 #search .boxes i {
   color: #fff !important;
   font-size: 3.5em;
+}
+
+.user-info * {
+  vertical-align: middle;
+}
+
+.menu-title{
+  color: #546E7A;
+  cursor: pointer;
+}
+
+.menu-items {
+  position: absolute;
+  left: auto;
+  background-color: #fff;
+  right: 0px;
+  border-radius: .4rem;
+  border: 1px solid rgba(0,0,0,0.05);
+  box-shadow: 0 4px 30px rgba(0,0,0,0.15);
+  max-height: 400px;
+  margin-top: -0.8rem;
+  min-width: 120px;
+}
+
+.menu-items .action{
+  border-radius: .4rem;
+  width: 100%;
+}
+
+.menu-items .action span{
+  display: inline;
+}
+
+
+.menu-items .action:hover {
+  background-color: rgba(0, 0, 0, .1);
 }

@@ -32,10 +32,10 @@
           <strong>{{ $t("prompts.displayName") }}</strong> {{ req.name }}
         </div>
         <div class="share__box__element">
-          <strong>{{ $t("prompts.lastModified") }}:</strong> {{ humanTime }}
+          <strong>{{ $t("prompts.lastModified") }}</strong> {{ humanTime }}
         </div>
         <div class="share__box__element">
-          <strong>{{ $t("prompts.size") }}:</strong> {{ humanSize }}
+          <strong>{{ $t("prompts.size") }}</strong> {{ humanSize }}
         </div>
         <div class="share__box__element share__box__center">
           <a target="_blank" :href="link" class="button button--flat">{{

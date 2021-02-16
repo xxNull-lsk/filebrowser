@@ -1,7 +1,22 @@
+String.prototype.trim = function (char, type) {
+  if (char) {
+      if (type == 'left') {
+          return this.replace(new RegExp('^\\'+char+'+', 'g'), '');
+      } else if (type == 'right') {
+          return this.replace(new RegExp('\\'+char+'+$', 'g'), '');
+      }
+      return this.replace(new RegExp('^\\'+char+'+|\\'+char+'+$', 'g'), '');
+  }
+  return this.replace(/^\s+|\s+$/g, '');
+};
+
 const getters = {
   isLogged: state => state.user !== null,
   isFiles: state => !state.loading && state.route.name === 'Files',
-  isTrash: state => !state.loading && state.route.path === '/files/.trash',
+  isTrash: state => {
+    let path = state.route.path.trim('/', 'right')
+    return !state.loading && (path === '/files/.trash')
+  },
   isListing: (state, getters) => getters.isFiles && state.req.isDir,
   isEditor: (state, getters) => getters.isFiles && (state.req.type === 'text' || state.req.type === 'textImmutable'),
   isPreview: state => state.previewMode,

@@ -23,8 +23,13 @@ import (
 	"github.com/filebrowser/filebrowser/v2/trash"
 )
 
+func IsTrash(r *http.Request) bool {
+	return strings.TrimRight(r.URL.Path, "/") == "/.trash"
+}
+
 var resourceGetHandler = withUser(func(w http.ResponseWriter, r *http.Request, d *data) (int, error) {
-	if r.URL.Path == "/.trash" && !files.Exist(d.user.Fs, r.URL.Path) {
+	isTrash := IsTrash(r)
+	if isTrash && !files.Exist(d.user.Fs, r.URL.Path) {
 		err := d.user.Fs.Mkdir("/.trash", 0777)
 		if err != nil {
 			return errToStatus(err), err
@@ -45,7 +50,7 @@ var resourceGetHandler = withUser(func(w http.ResponseWriter, r *http.Request, d
 	}
 
 	if file.IsDir {
-		if d.user.HideDotfiles && r.URL.Path != "/.trash" {
+		if d.user.HideDotfiles && !isTrash {
 			count := len(file.Listing.Items)
 			for i := range file.Listing.Items {
 				index := count - i - 1
@@ -60,19 +65,24 @@ var resourceGetHandler = withUser(func(w http.ResponseWriter, r *http.Request, d
 				}
 			}
 		}
-		if r.URL.Path == "/.trash" {
+		if isTrash {
 			count := len(file.Listing.Items)
 			for i := range file.Listing.Items {
 				index := count - i - 1
 				item := file.Listing.Items[index]
 				t, err := d.store.Trash.GetByHash(item.Name)
-				if err != nil {
+				if err != nil || t.UserID != d.user.ID && !d.user.Perm.Admin {
 					file.Listing.Items = append(file.Listing.Items[:index], file.Listing.Items[index+1:]...)
 					continue
 				}
 
 				item.Name = filepath.Base(t.OriginPath)
 				item.OriginPath = t.OriginPath
+				item.DeleteTime = time.Unix(t.Datetime, 0)
+				user, err := d.store.Users.Get("", t.UserID)
+				if err == nil {
+					item.Username = user.Username
+				}
 			}
 		}
 		file.Listing.Sorting = d.user.Sorting

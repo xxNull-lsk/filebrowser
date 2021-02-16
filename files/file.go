@@ -28,7 +28,9 @@ type FileInfo struct {
 	*Listing
 	Fs              afero.Fs          `json:"-"`
 	Path            string            `json:"path"`
-	OriginPath      string            `json:"originPath"`
+	OriginPath      string            `json:"originPath,omitempty"`
+	Username        string            `json:"userName,omitempty"`
+	DeleteTime      time.Time         `json:"deleteTime"`
 	Name            string            `json:"name"`
 	Size            int64             `json:"size"`
 	Extension       string            `json:"extension"`

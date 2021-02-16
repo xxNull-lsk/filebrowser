@@ -6,7 +6,7 @@
   --divider: #CECECE;
   --icon: #3385ff;
   --listItemIcon:#FF9933;
-  --textPrimary: rgba(0, 0, 0, 0.6);
+  --textPrimary: rgba(0, 0, 0, 0.8);
   --textSecondary: #CCCCCC;
 }
 
@@ -24,6 +24,18 @@ body {
 
 #login {
   background: var(--background);
+}
+
+.user-name {
+  color: var(--textPrimary);
+}
+
+.logo-name {
+  color: var(--textPrimary);
+}
+
+.menu-title i{
+  color: var(--icon);
 }
 
 header {
