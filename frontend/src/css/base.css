@@ -63,16 +63,25 @@ nav .favorite {
   display: block;
   border-radius: 0;
   font-size: 0.8em;
+<<<<<<< HEAD
+=======
   padding-top: 0.2em;
   padding-bottom: 0.2em;
   padding-left: 1.2em;
   padding-right: 0.2em;
   margin: 0;
+>>>>>>> 1e265213e3abedca5a2e76f07dd5d78822b24896
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
+<<<<<<< HEAD
+nav .favorite>* {
+  vertical-align: middle;
+}
+
+=======
 nav .favorite * {
   vertical-align: middle;
 }
@@ -121,6 +130,7 @@ nav .favorite .delete {
   border-radius: 0;
 }
 
+>>>>>>> 1e265213e3abedca5a2e76f07dd5d78822b24896
 nav .action {
   width: 100%;
   display: block;
