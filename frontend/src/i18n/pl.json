@@ -234,6 +234,12 @@
       "light": "",
       "title": ""
     },
+    "iconThemes": {
+      "material": "",
+      "font": "",
+      "color": "",
+      "title": ""
+    },
     "user": "Użytkownik",
     "userCommands": "Polecenia",
     "userCommandsHelp": "A space separated list with the available commands for this user. Example:\n",

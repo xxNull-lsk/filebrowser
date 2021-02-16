@@ -234,6 +234,12 @@
       "light": "",
       "title": ""
     },
+    "iconThemes": {
+      "material": "",
+      "font": "",
+      "color": "",
+      "title": ""
+    },
     "user": "Användare",
     "userCommands": "Kommandon",
     "userCommandsHelp": "En utrymmesseparerad lista med tillgängliga kommandon för den här användaren. Exempel:\n",

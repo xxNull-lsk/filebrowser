@@ -235,6 +235,12 @@
       "light": "浅色",
       "title": "主题"
     },
+    "iconThemes": {
+      "material": "material",
+      "font": "字体",
+      "color": "多彩",
+      "title": "图标"
+    },
     "user": "用户",
     "userCommands": "用户命令（shell 命令）",
     "userCommandsHelp": "指定该用户可以执行的命令（shell 代码），用空格分隔。例如：",

@@ -234,6 +234,12 @@
       "light": "",
       "title": ""
     },
+    "iconThemes": {
+      "material": "",
+      "font": "",
+      "color": "",
+      "title": ""
+    },
     "user": "Utilizator",
     "userCommands": "Comenzi",
     "userCommandsHelp": "O lista de comenzi disponibile acestui utilizator separate de spații. Exemplu:\n",

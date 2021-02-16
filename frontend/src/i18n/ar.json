@@ -234,6 +234,12 @@
       "light": "",
       "title": ""
     },
+    "iconThemes": {
+      "material": "",
+      "font": "",
+      "color": "",
+      "title": ""
+    },
     "user": "المستخدم",
     "userCommands": "الأوامر",
     "userCommandsHelp": "الأوامر المتاحة لهذا المستخدم مفصولة فيما بينها بمسافة. مثال:\n",

@@ -1,8 +1,8 @@
 <template>
   <select v-on:change="change" :value="icon_theme">
-    <option value="material-icon">{{ $t('settings.themes.materialIcon') }}</option>
-    <option value="font-icon">{{ $t('settings.themes.fontIcon') }}</option>
-    <option value="color-icon">{{ $t('settings.themes.colorIcon') }}</option>
+    <option value="material-icon">{{ $t('settings.iconThemes.material') }}</option>
+    <option value="font-icon">{{ $t('settings.iconThemes.font') }}</option>
+    <option value="color-icon">{{ $t('settings.iconThemes.color') }}</option>
   </select>
 </template>
 

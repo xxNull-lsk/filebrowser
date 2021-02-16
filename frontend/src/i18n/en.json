@@ -236,6 +236,12 @@
       "light": "Light",
       "title": "Theme"
     },
+    "iconThemes": {
+      "material": "material",
+      "font": "font",
+      "color": "color",
+      "title": "Icon theme"
+    },
     "user": "User",
     "userCommands": "Commands",
     "userCommandsHelp": "A space separated list with the available commands for this user. Example:\n",

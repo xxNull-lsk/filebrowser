@@ -6,6 +6,76 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "15633099",
+      "name": "rar",
+      "font_class": "rar",
+      "unicode": "e6ba",
+      "unicode_decimal": 59066
+    },
+    {
+      "icon_id": "3238017",
+      "name": "mp4",
+      "font_class": "mp4",
+      "unicode": "e6bc",
+      "unicode_decimal": 59068
+    },
+    {
+      "icon_id": "9968675",
+      "name": "tar",
+      "font_class": "tar",
+      "unicode": "e636",
+      "unicode_decimal": 58934
+    },
+    {
+      "icon_id": "6957703",
+      "name": "BAT",
+      "font_class": "bat",
+      "unicode": "e60d",
+      "unicode_decimal": 58893
+    },
+    {
+      "icon_id": "8148582",
+      "name": "png",
+      "font_class": "png",
+      "unicode": "e6c2",
+      "unicode_decimal": 59074
+    },
+    {
+      "icon_id": "12031241",
+      "name": "sys",
+      "font_class": "sys",
+      "unicode": "e60e",
+      "unicode_decimal": 58894
+    },
+    {
+      "icon_id": "10197385",
+      "name": "gzip",
+      "font_class": "gzip",
+      "unicode": "e722",
+      "unicode_decimal": 59170
+    },
+    {
+      "icon_id": "19917377",
+      "name": "gzip",
+      "font_class": "gz",
+      "unicode": "ebff",
+      "unicode_decimal": 60415
+    },
+    {
+      "icon_id": "5423053",
+      "name": "CSV",
+      "font_class": "csv",
+      "unicode": "e64f",
+      "unicode_decimal": 58959
+    },
+    {
+      "icon_id": "12600643",
+      "name": "chm",
+      "font_class": "chm",
+      "unicode": "e61a",
+      "unicode_decimal": 58906
+    },
+    {
       "icon_id": "7813174",
       "name": "folder",
       "font_class": "folder",
@@ -95,13 +165,6 @@
       "font_class": "docx",
       "unicode": "e7b0",
       "unicode_decimal": 59312
-    },
-    {
-      "icon_id": "5916396",
-      "name": "BAT",
-      "font_class": "bat",
-      "unicode": "e613",
-      "unicode_decimal": 58899
     },
     {
       "icon_id": "5916430",
@@ -258,32 +321,11 @@
       "unicode_decimal": 59035
     },
     {
-      "icon_id": "5916433",
-      "name": "TAR",
-      "font_class": "tar",
-      "unicode": "e622",
-      "unicode_decimal": 58914
-    },
-    {
       "icon_id": "6233075",
       "name": "AVI图标",
       "font_class": "avi",
       "unicode": "e63c",
       "unicode_decimal": 58940
-    },
-    {
-      "icon_id": "10135192",
-      "name": "chm",
-      "font_class": "chm",
-      "unicode": "e8aa",
-      "unicode_decimal": 59562
-    },
-    {
-      "icon_id": "10135229",
-      "name": "gz",
-      "font_class": "gz",
-      "unicode": "e8b0",
-      "unicode_decimal": 59568
     },
     {
       "icon_id": "12904114",
@@ -349,13 +391,6 @@
       "unicode_decimal": 58883
     },
     {
-      "icon_id": "17811002",
-      "name": "rar",
-      "font_class": "rar",
-      "unicode": "e604",
-      "unicode_decimal": 58884
-    },
-    {
       "icon_id": "17811005",
       "name": "txt",
       "font_class": "txt",
@@ -382,20 +417,6 @@
       "font_class": "jpg",
       "unicode": "e62c",
       "unicode_decimal": 58924
-    },
-    {
-      "icon_id": "19145277",
-      "name": "png",
-      "font_class": "png",
-      "unicode": "e62d",
-      "unicode_decimal": 58925
-    },
-    {
-      "icon_id": "19145280",
-      "name": "mp4",
-      "font_class": "mp4",
-      "unicode": "e62e",
-      "unicode_decimal": 58926
     },
     {
       "icon_id": "19649317",

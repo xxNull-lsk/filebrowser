@@ -234,6 +234,12 @@
       "light": "",
       "title": ""
     },
+    "iconThemes": {
+      "material": "",
+      "font": "",
+      "color": "",
+      "title": ""
+    },
     "user": "Benutzer",
     "userCommands": "Befehle",
     "userCommandsHelp": "Eine Liste, mit einem Leerzeichen als Trennung, mit den für diesen Nutzer verfügbaren Befehlen. Example:\n",
