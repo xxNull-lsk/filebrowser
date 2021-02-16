@@ -234,6 +234,12 @@
       "light": "",
       "title": ""
     },
+    "iconThemes": {
+      "material": "",
+      "font": "",
+      "color": "",
+      "title": ""
+    },
     "user": "Gebruiker",
     "userCommands": "Commando's",
     "userCommandsHelp": "Een lijst met beschikbare commando's voor de gebruiker gescheiden door spaties. Voorbeeld: \n",

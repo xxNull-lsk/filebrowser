@@ -234,6 +234,12 @@
       "light": "",
       "title": ""
     },
+    "iconThemes": {
+      "material": "",
+      "font": "",
+      "color": "",
+      "title": ""
+    },
     "user": "Utilizador",
     "userCommands": "Comandos",
     "userCommandsHelp": "Uma lista, separada com espaços, de comandos disponíveis para este utilizados. Exemplo:",

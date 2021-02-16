@@ -234,6 +234,12 @@
       "light": "",
       "title": ""
     },
+    "iconThemes": {
+      "material": "",
+      "font": "",
+      "color": "",
+      "title": ""
+    },
     "user": "사용자",
     "userCommands": "명령어",
     "userCommandsHelp": "사용에게 허용할 명령어를 공백으로 구분하여 입력하세요. 예:\n",

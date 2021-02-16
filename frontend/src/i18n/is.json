@@ -234,6 +234,12 @@
       "light": "",
       "title": ""
     },
+    "iconThemes": {
+      "material": "",
+      "font": "",
+      "color": "",
+      "title": ""
+    },
     "user": "Notandi",
     "userCommands": "Skipanir",
     "userCommandsHelp": "Listi þar sem gildum er skipt upp með bili og inniheldur tiltækar skipanir fyrir þennan notanda. Til dæmis:\n",

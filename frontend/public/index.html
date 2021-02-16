@@ -28,6 +28,10 @@
   <meta name="msapplication-TileImage" content="[{[ .StaticURL ]}]/img/icons/mstile-144x144.png">
   <meta name="msapplication-TileColor" content="#2979ff">
 
+
+  <link rel="stylesheet" href="[{[ .StaticURL ]}]/icons/iconfont.css"/>
+  <script src="[{[ .StaticURL ]}]/icons/iconfont.js"></script>
+
   <!-- Inject Some Variables and generate the manifest json -->
   <script>
     window.FileBrowser = JSON.parse(`[{[ .Json ]}]`);
@@ -137,6 +141,10 @@
   [{[ if .Theme -]}]
     <link rel="stylesheet" href="[{[ .StaticURL ]}]/themes/[{[ .Theme ]}].css" />
   [{[ end ]}]
+
+
+
+
   [{[ if .CSS -]}]
     <link rel="stylesheet" href="[{[ .StaticURL ]}]/custom.css" />
   [{[ end ]}]

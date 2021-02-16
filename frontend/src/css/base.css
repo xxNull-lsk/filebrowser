@@ -203,3 +203,10 @@ main {
 .delete-info-group {
   border-top: 1px solid rgba(0, 0, 0, 0.05);
 }
+.color-icon {
+  width: 2em;
+  height: 2em;
+  vertical-align: -0.15em;
+  fill: currentColor;
+  overflow: hidden;
+}

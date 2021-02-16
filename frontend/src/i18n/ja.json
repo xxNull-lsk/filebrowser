@@ -234,6 +234,12 @@
       "light": "",
       "title": ""
     },
+    "iconThemes": {
+      "material": "",
+      "font": "",
+      "color": "",
+      "title": ""
+    },
     "user": "ユーザー",
     "userCommands": "ユーザーのコマンド",
     "userCommandsHelp": "空白区切りの有効のコマンドのリストを指定してください。例：",
