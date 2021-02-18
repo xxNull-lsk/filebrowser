@@ -115,7 +115,6 @@ nav .favorite .delete {
   line-height: 1;
   white-space: nowrap;
   overflow: hidden;
-  text-overflow: ellipsis;
   width: 32px;
   border: 0px none;
   border-radius: 0;

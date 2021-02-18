@@ -78,9 +78,6 @@ header {
 .favorite .delete {
   border-color: var(--surfacePrimary);
 }
-.favorite .delete {
-  border-color: var(--surfacePrimary);
-}
 .favorite_title {
   color: var(--textPrimary);
 }
