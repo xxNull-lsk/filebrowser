@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# npm install babel-plugin-component -D
+
 set -e
 
 VERSION="(untracked)"
