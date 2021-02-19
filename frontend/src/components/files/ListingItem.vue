@@ -13,9 +13,9 @@
   :aria-label="name"
   :aria-selected="isSelected">
     <div>
-      <lazy-component v-if="type==='image' && isThumbsEnabled && !isSharing" :timeout="1000">
-        <img :src="thumbnailUrl">
-      </lazy-component>
+      <span v-if="type==='image' && isThumbsEnabled && !isSharing">
+        <img v-lazy="thumbnailUrl">
+      </span>
       <i v-else-if="isFontIcon()" :class="icon"></i>
       <svg v-else-if="isColorIcon()" class="color-icon" aria-hidden="true">
         <use :xlink:href="icon"></use>

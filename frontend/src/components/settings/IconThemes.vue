@@ -18,10 +18,10 @@ export default {
       options: [{
         value: 'material-icon',
         label: this.$t('settings.iconThemes.material'),
-      },{
+      },{/*
         value: 'font-icon',
         label: this.$t('settings.iconThemes.font'),
-      },{
+      },{*/
         value: 'color-icon',
         label: this.$t('settings.iconThemes.color'),
       },
