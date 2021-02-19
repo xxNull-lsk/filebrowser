@@ -3,7 +3,7 @@
   --surfacePrimary: #fcfcfc;
   --surfaceSecondary: #f5f5f5;
   --hover: #99CCFF;
-  --divider: #CECECE;
+  --divider: #f0f0f0;
   --icon: #3385ff;
   --listItemIcon:#FF9933;
   --textPrimary: rgba(0, 0, 0, 0.8);
@@ -154,11 +154,11 @@ nav > div {
 .input {
   background: var(--surfaceSecondary);
   color: var(--textPrimary);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(210, 210, 210, 0.10);
 }
 .input:hover,
 .input:focus {
-  border-color: rgba(255, 255, 255, 0.15);
+  border-color: rgba(210, 210, 210, 0.35);
 }
 .input--red {
   background: #fcd0cd;

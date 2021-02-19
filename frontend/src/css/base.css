@@ -149,6 +149,10 @@ main {
   width: calc(100% - 19em);
 }
 
+main>div {
+  padding-top: 0.8em;
+}
+
 #breadcrumbs {
   height: 3em;
   border-bottom: 1px solid rgba(0, 0, 0, 0.05);

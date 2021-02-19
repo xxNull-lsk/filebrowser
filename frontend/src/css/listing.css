@@ -120,7 +120,7 @@
   width: 100%;
   margin: 0;
   border: 1px solid rgba(0, 0, 0, 0.1);
-  padding: 1em;
+  padding: .85em;
   border-top: 0;
 }
 
@@ -180,7 +180,7 @@
   display: flex !important;
   background: #fafafa;
   z-index: 999;
-  padding: .85em;
+  padding: .55em;
   border: 0;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
