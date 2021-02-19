@@ -21,7 +21,7 @@
     </p>
 
     <p v-if="!isDefault">
-      <input type="checkbox" :disabled="user.perm.admin" v-model="user.lockPassword"> {{ $t('settings.lockPassword') }}
+      <el-checkbox :disabled="user.perm.admin" v-model="user.lockPassword"> {{ $t('settings.lockPassword') }}</el-checkbox>
     </p>
 
     <permissions :perm.sync="user.perm" />

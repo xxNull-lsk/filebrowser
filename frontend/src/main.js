@@ -3,9 +3,11 @@ import store from '@/store'
 import router from '@/router'
 import i18n from '@/i18n'
 import Vue from 'vue'
+import '@/utils/vue'
 import { recaptcha, loginPage } from '@/utils/constants'
 import { login, validateLogin } from '@/utils/auth'
 import App from '@/App'
+import { Select, Option, Checkbox } from 'element-ui';
 
 sync(store, router)
 
@@ -29,6 +31,10 @@ async function start () {
       check()
     })
   }
+
+  Vue.use(Select);
+  Vue.use(Option);
+  Vue.use(Checkbox);
 
   new Vue({
     el: '#app',

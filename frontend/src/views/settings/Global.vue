@@ -6,9 +6,9 @@
       </div>
 
       <div class="card-content">
-        <p><input type="checkbox" v-model="settings.signup"> {{ $t('settings.allowSignup') }}</p>
+        <p><el-checkbox v-model="settings.signup"> {{ $t('settings.allowSignup') }}</el-checkbox></p>
 
-        <p><input type="checkbox" v-model="settings.createUserDir"> {{ $t('settings.createUserDir') }}</p>
+        <p><el-checkbox v-model="settings.createUserDir"> {{ $t('settings.createUserDir') }}</el-checkbox></p>
 
         <h3>{{ $t('settings.rules') }}</h3>
         <p class="small">{{ $t('settings.globalRules') }}</p>
@@ -27,8 +27,9 @@
         </i18n>
 
         <p>
-          <input type="checkbox" v-model="settings.branding.disableExternal" id="branding-links" />
+          <el-checkbox v-model="settings.branding.disableExternal" id="branding-links">
           {{ $t('settings.disableExternalLinks') }}
+          </el-checkbox>
         </p>
 
         <p>
