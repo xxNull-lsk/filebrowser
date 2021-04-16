@@ -1,6 +1,7 @@
-<p align="center">
-  <img src="https://raw.githubusercontent.com/filebrowser/logo/master/banner.png" width="550"/>
-</p>
+# 中文加强版
+
+
+
 ![共享](./doc/share.gif)
 
 
@@ -8,11 +9,13 @@
 
 
 
-filebrowser provides a file managing interface within a specified directory and it can be used to upload, delete, preview, rename and edit your files. It allows the creation of multiple users and each user can have its own directory. It can be used as a standalone app or as a middleware.
+## 新增特性
 
-## Features
-
-Please refer to our docs at [https://filebrowser.org/features](https://filebrowser.org/features)
+- 优化界面布局，美化界面元素和主题。
+- 支持文件外部预览服务期，包括doc、ppt、pdf以及压缩文件的预览。
+- 支持文件共享，支持提取码和限时，支持查看访问次数。
+- 支持回收站功能。
+- 支持收藏夹功能。
 
 ## Install
 
